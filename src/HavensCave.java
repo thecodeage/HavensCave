@@ -47,7 +47,7 @@ public class HavensCave extends Application
 
     	//Scene scene = new Scene(sc);
 
-    	sc.initKeyListener(scene);
+    	
     	
         stage.setTitle("Haven's Cave Adventure");
         stage.setScene(scene);
@@ -59,6 +59,7 @@ public class HavensCave extends Application
         
         s = stage;
         startlevel = new Scene(sc);
+        
         mm.bStart.setOnAction(this::startLevel);
         
         mediaPlayer.setVolume(0.2);
@@ -67,6 +68,7 @@ public class HavensCave extends Application
     
     private void startLevel(ActionEvent e){
         s.setScene(startlevel);
+        sc.initKeyListener(startlevel);
         s.show();
     }
 }
