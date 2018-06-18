@@ -58,10 +58,10 @@ public class MainMenu extends GridPane{
 		add(tTitel, 0, 0);
 		add(bStart, 0, 1);
 		add(bCredits, 0, 2);
-		
-		// private style() {
-			//bStart.setStyle(""
+		/*
+		private style() {
+			bStart.setStyle(""
 				
-		//}
+		} */
 	}
 }

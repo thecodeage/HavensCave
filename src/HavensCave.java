@@ -39,7 +39,7 @@ public class HavensCave extends Application
 
     	
 
-    	Scene scene = new Scene(le);
+    	Scene scene = new Scene(sc);
 
     	//Scene scene = new Scene(sc);
 
