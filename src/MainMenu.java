@@ -21,7 +21,6 @@ public class MainMenu extends GridPane{
 	Button bCredits = new Button("Credits");
 	Text tTitel = new Text("Haven's Cave Adventure!");
 	DropShadow ds = new DropShadow();
-	
 	Image hintergrundbild;
 	
 	
@@ -36,12 +35,11 @@ public class MainMenu extends GridPane{
 		BackgroundImage backgroundImage = new BackgroundImage (hintergrundbild, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 		Background background = new Background(backgroundImage);
 		
-		setBackground(background); //bist du behindert
+		setBackground(background);
 		
 		setHeight(512);
 		setWidth(1024);
-		setVgap(10.0);
-		
+		setVgap(8.0);
 		//general ds settings
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.BLACK);
