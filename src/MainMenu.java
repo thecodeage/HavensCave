@@ -37,7 +37,7 @@ public class MainMenu extends GridPane{
 		Background background = new Background(backgroundImage);
 		
 		//setGridLinesVisible(true);
-		setPadding(new Insets(10,10,10,10));
+		setPadding(new Insets(5,5,5,5));
 		
 		setBackground(background);
 		setHeight(512);
@@ -59,5 +59,9 @@ public class MainMenu extends GridPane{
 		add(bStart, 0, 1);
 		add(bCredits, 0, 2);
 		
+		// private style() {
+			//bStart.setStyle(""
+				
+		//}
 	}
 }
