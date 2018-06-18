@@ -1,6 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -19,7 +20,7 @@ public class MainMenu extends GridPane{
 	
 	Button bStart = new Button("Play");
 	Button bCredits = new Button("Credits");
-	Text tTitel = new Text("Haven's Cave Adventure!");
+	Text tTitel = new Text("Haven's Cave Adventure");
 	DropShadow ds = new DropShadow();
 	Image hintergrundbild;
 	
@@ -35,8 +36,10 @@ public class MainMenu extends GridPane{
 		BackgroundImage backgroundImage = new BackgroundImage (hintergrundbild, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 		Background background = new Background(backgroundImage);
 		
-		setBackground(background);
+		//setGridLinesVisible(true);
+		setPadding(new Insets(10,10,10,10));
 		
+		setBackground(background);
 		setHeight(512);
 		setWidth(1024);
 		setVgap(8.0);
