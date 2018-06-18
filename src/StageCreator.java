@@ -102,74 +102,80 @@ public class StageCreator extends GridPane{
     }
 
     public void move(String direction) {
-        boolean find = false;
         int x = p.getX();
         int y = p.getY();
-        
+        int yN, xN;
        
         switch (direction) {
+        	default:
+        		break;
         	case "up":
-        		views[y-1][x].setImage(iPlayer);
-        		views[y-1][x].setVisible(true);
-            	views[y][x].setVisible(false);
-            	p.setY(y-1);
+        		yN = y-1;
+        		xN = x;
+        		if(canWalk(yN, xN)) {
+        			views[yN][xN].setImage(iPlayer);
+            		views[yN][xN].setRotate(0);
+            		views[yN][xN].setVisible(true);
+                	views[y][x].setVisible(false);
+                	p.setY(yN);
+        		}else {
+        			views[y][x].setRotate(0);
+        		}
         		break;
         	case "down":
-        		views[y+1][x].setImage(iPlayer);
-        		views[y+1][x].setVisible(true);
-            	views[y][x].setVisible(false);
-            	p.setY(y+1);
+            	yN = y+1;
+        		xN = x;
+        		if(canWalk(yN, xN)) {
+        			views[yN][xN].setImage(iPlayer);
+            		views[yN][xN].setRotate(180);
+            		views[yN][xN].setVisible(true);
+                	views[y][x].setVisible(false);
+                	p.setY(yN);
+        		}else {
+        			views[y][x].setRotate(180);
+        		}
         		break;
         	case "left":
-        		views[y][x-1].setImage(iPlayer);
-        		views[y][x-1].setVisible(true);
-            	views[y][x].setVisible(false);
-            	p.setX(x-1);
+        		yN = y;
+        		xN = x-1;
+        		if(canWalk(yN, xN)) {
+        			views[yN][xN].setImage(iPlayer);
+            		views[yN][xN].setRotate(270);
+            		views[yN][xN].setVisible(true);
+                	views[y][x].setVisible(false);
+                	p.setX(xN);
+        		}else {
+        			views[y][x].setRotate(270);
+        		}
         		break;
         	case "right":
-        		views[y][x+1].setImage(iPlayer);
-        		views[y][x+1].setVisible(true);
-            	views[y][x].setVisible(false);
-            	p.setX(x+1);
+        		yN = y;
+        		xN = x+1;
+        		if(canWalk(yN, xN)) {
+        			views[yN][xN].setImage(iPlayer);
+            		views[yN][xN].setRotate(90);
+            		views[yN][xN].setVisible(true);
+                	views[y][x].setVisible(false);
+                	p.setX(xN);
+        		}else {
+        			views[y][x].setRotate(90);
+        		}
         		break;
         }
-        /*
-        while(!find) { //muss geloescht werden
-            int i = 0;
-            int j = 0;
-            if(level.entities[i][j] instanceof Player) {
-                find = true;
-                if(direction.equals("up")) {
-                    if(level.boden[i+1][j].isWalkable()) {
-                        level.entities[i+1][j] = level.entities[i][j];
-                        level.entities[i][j] = null;
-                        views[i+1][j] = views[i][j];
-                        views[i][j] = null;
-                        views[i+1][j].setLayoutY(views[i+1][j].getLayoutY());
-
-                    }
-                }
-                if(direction.equals("down")) {
-                    System.out.println("down");
-                }
-                if(direction.equals("left")) {
-                    System.out.println("left");
-                }
-                if(direction.equals("right")) {
-                    System.out.println("right");
-                }
-                find = true;
-            }else {
-                if(j < level.getBreite()) {
-                    j++;
-                }else {
-                    j = 0;
-                    i++;
-                }
-            }
-        }*/
-
+        
     }
+
+    private boolean canWalk(int x, int y) {
+    	if(level.boden[x][y] == null) {
+    		return false;
+    	}else if(level.boden[x][y].isWalkable()) {
+    		return true;
+		}else {
+		    return false;
+		}
+    	
+    }
+    
     public int getBreite() {
         return level.getBreite();
     }
