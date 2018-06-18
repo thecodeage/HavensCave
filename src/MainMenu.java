@@ -67,15 +67,29 @@ public class MainMenu extends GridPane{
 		
 		add(tTitel, 0, 0);
 		add(bStart, 0, 1);
-		add(bCredits, 0, 2);
-		add(bLevelEditor, 0, 3);
+		add(bCredits, 0, 3);
+		add(bLevelEditor, 0, 2);
 		
 	}
 	private void style() {
 		bStart.setStyle(""
 				+ "-fx-font-size: 15;"
-                + "-fx-text-fill: black;"
-                + "-fx-font-weight: bold;");
+                + "-fx-font-weight: bold;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none"); 
+		
+		bLevelEditor.setStyle(""
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;");
+		
+		bCredits.setStyle(""
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;");
+		
 	}
 
 }
