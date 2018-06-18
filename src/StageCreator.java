@@ -86,7 +86,6 @@ public class StageCreator extends GridPane{
                 }
             }
         }
-
     }
     
     public void initKeyListener(Scene scene) {
@@ -111,9 +110,32 @@ public class StageCreator extends GridPane{
         int x = p.getX();
         int y = p.getY();
         
-        if(direction.equals("up")){
-        	views[y-1][x].setImage(iPlayer);
-        	views[y][x].setVisible(false);
+       
+        switch (direction) {
+        	case "up":
+        		views[y-1][x].setImage(iPlayer);
+        		views[y-1][x].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setY(y-1);
+        		break;
+        	case "down":
+        		views[y+1][x].setImage(iPlayer);
+        		views[y+1][x].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setY(y+1);
+        		break;
+        	case "left":
+        		views[y][x-1].setImage(iPlayer);
+        		views[y][x-1].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setX(x-1);
+        		break;
+        	case "right":
+        		views[y][x+1].setImage(iPlayer);
+        		views[y][x+1].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setX(x+1);
+        		break;
         }
         /*
         while(!find) { //muss geloescht werden
