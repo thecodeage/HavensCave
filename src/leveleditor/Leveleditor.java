@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class Leveleditor extends GridPane {
-
+// Hi ich bin ein Kommentar
 	private int hoehe, breite;
 	public Entity[][] entities;
     public Boden[][] boden;
