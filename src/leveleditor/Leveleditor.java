@@ -6,12 +6,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import boeden.Boden;
+import boeden.Bombenplatz;
+import boeden.KeyLock;
+import boeden.Sand;
+import boeden.Schlucht;
 import entities.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +31,8 @@ public class Leveleditor extends GridPane {
     private ChoiceBox<String> akt;
     private ImageView showAkt;
     
+    private ImageView[][] vBoden;
+    
     Image iBombe, iBombenPlatz, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
 	public Leveleditor() {
@@ -35,6 +42,7 @@ public class Leveleditor extends GridPane {
 		
 		entities = new Entity[hoehe][breite];
         boden = new Boden[hoehe][breite];
+        vBoden = new ImageView[hoehe][breite];
 
 		setVgap(16);
 		
@@ -76,6 +84,7 @@ public class Leveleditor extends GridPane {
 					}
 					
 				});
+				vBoden[i][j] = feld;
 				pane.add(feld, j, i);
 			}
 		}
@@ -104,11 +113,50 @@ public class Leveleditor extends GridPane {
 			      }});
 			
 			editor.add(akt, 0, 0);
+			
+			Button bSave = new Button("Save");
+			bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					getCode();
+					
+				}
+				
+			});
+			editor.add(bSave, 2, 0);
 
 			
 		add(editor, 0, 1);
 	}
 	
+	public void getCode() {
+		String s = "";
+		for(int i = 0;i<hoehe;i++) {
+			for(int j = 0;j<breite;j++) {
+				
+				if(vBoden[i][j] == null) {
+					
+				}else {
+					if(vBoden[i][j].getImage() == iBombenPlatz) {
+						s = s+"boden["+i+"]["+j+"] = new Bombenplatz();";
+					}
+					if(vBoden[i][j].getImage() == iKeylock) {
+						s = s+"boden["+i+"]["+j+"] = new KeyLock();";
+					}
+					if(vBoden[i][j].getImage() == iSand) {
+						s = s+"boden["+i+"]["+j+"] = new Sand();";
+					}
+					if(vBoden[i][j].getImage() == iSchlucht) {
+						s = s+"boden["+i+"]["+j+"] = new Schlucht();";
+					}
+					
+				
+				}
+			}
+		}
+		System.out.println(s);
+	}
 	
 	public void buttonClicked(MouseEvent e) {
 		ImageView feld = (ImageView) e.getSource();
