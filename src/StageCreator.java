@@ -2,7 +2,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import boeden.Boden;
+import boeden.Bombenplatz;
+import boeden.KeyLock;
+import boeden.Ladder;
 import boeden.Sand;
+import boeden.Schlucht;
+import boeden.Wandwall;
+import entities.Bombe;
+import entities.Key;
 import entities.Player;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -26,7 +33,7 @@ public class StageCreator extends GridPane{
     private ImageView[][] views;
     private Player p;
     
-    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
+    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
     public StageCreator(Level pL) {
         level = pL;
@@ -45,6 +52,7 @@ public class StageCreator extends GridPane{
 			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
 			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
 			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
+			iLadder = new Image(new FileInputStream("src\\res\\img\\ladder.png"));
 			iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
 			iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
 			iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
@@ -66,17 +74,59 @@ public class StageCreator extends GridPane{
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
                     add(imageView, j*32, i*32);
+                }else if(level.boden[i][j] instanceof Bombenplatz) {
+                    ImageView imageView = new ImageView(iBombenPlatz);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                }else if(level.boden[i][j] instanceof KeyLock) {
+                    ImageView imageView = new ImageView(iKeylock);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                }else if(level.boden[i][j] instanceof Ladder) {
+                    ImageView imageView = new ImageView(iLadder);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Sand) {
                     ImageView imageView = new ImageView(iSand);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
                     add(imageView, j*32, i*32);
+                }else if(level.boden[i][j] instanceof Schlucht) {
+                    ImageView imageView = new ImageView(iSchlucht);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                }else if(level.boden[i][j] instanceof Wandwall) {
+                    ImageView imageView = new ImageView(iWandwall);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
                 }
+                
+                
+            
 
                 
                 if(level.entities[i][j] == null) {
                 	ImageView imageView = new ImageView();
                 	imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                    imageView.toFront();
+                    views[i][j] = imageView;
+                }else if(level.entities[i][j] instanceof Bombe) {
+                    ImageView imageView = new ImageView(iBombe);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                    imageView.toFront();
+                    views[i][j] = imageView;
+                }else if(level.entities[i][j] instanceof Key) {
+                    ImageView imageView = new ImageView(iKey);
+                    imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
                     add(imageView, j*32, i*32);
                     imageView.toFront();
