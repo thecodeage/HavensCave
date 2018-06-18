@@ -37,7 +37,7 @@ public class HavensCave extends Application
     {
 
     	
-    	Scene scene = new Scene(mm);
+    	Scene scene = new Scene(le);
     	sc.initKeyListener(scene);
     	
         stage.setTitle("Haven's Cave Adventure");
