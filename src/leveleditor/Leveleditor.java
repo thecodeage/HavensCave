@@ -11,6 +11,7 @@ import boeden.KeyLock;
 import boeden.Sand;
 import boeden.Schlucht;
 import entities.Entity;
+import entities.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -164,7 +165,7 @@ public class Leveleditor extends GridPane {
 			showAkt2.setFitWidth(32);
 			editor.add(showAkt2, 4, 0);
 			ObservableList<String> elementliste2 //
-	        = FXCollections.observableArrayList("Bombe", "Key", "Player");
+	        = FXCollections.observableArrayList("Bombe", "Key", "Player", "Empty");
 			akt2 = new ChoiceBox<String>(elementliste2);
 			akt2.setValue("Bombe");
 			akt2.autosize();
@@ -222,6 +223,9 @@ public class Leveleditor extends GridPane {
 				if(vEntities[i][j] == null) {
 					
 				}else {
+					if(vEntities[i][j].getImage() == iEmpty) {
+						//koente theoretisch auch weg
+					}
 					if(vEntities[i][j].getImage() == iBombe) {
 						s = s+"entities["+i+"]["+j+"] = new Bombe();";
 					}
@@ -230,6 +234,7 @@ public class Leveleditor extends GridPane {
 					}
 					if(vEntities[i][j].getImage() == iPlayer) {
 						s = s+"entities["+i+"]["+j+"] = new Player();";
+						s = s+"Player pp = new Player();entities["+i+"]["+j+"] = pp;pp.setX("+j+");pp.setY("+i+");p = pp;";
 					}
 				}
 			}
@@ -255,6 +260,9 @@ public class Leveleditor extends GridPane {
 				break;
 			case "Bombenplatz":
 				iv.setImage(iBombenPlatz);
+				break;
+			case "Empty":
+				iv.setImage(iEmpty);
 				break;
 			case "Key":
 				iv.setImage(iKey);
