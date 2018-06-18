@@ -91,7 +91,7 @@ public class Leveleditor extends GridPane {
 			showAkt.setFitWidth(32);
 			editor.add(showAkt, 1, 0);
 			ObservableList<String> elementliste //
-	        = FXCollections.observableArrayList("Sand", "Wand", "c");
+	        = FXCollections.observableArrayList("Bombenplatz", "Keylock", "Sand", "Schlucht", "Wand", "Wandwall");
 			akt = new ChoiceBox<String>(elementliste);
 			akt.setValue("Sand");
 			akt.autosize();
@@ -101,9 +101,7 @@ public class Leveleditor extends GridPane {
 			        String item = akt.getItems().get((Integer) number2);
 	
 			        changeImage(showAkt, item);
-			        
-			      }
-			    });
+			      }});
 			
 			editor.add(akt, 0, 0);
 
@@ -121,11 +119,32 @@ public class Leveleditor extends GridPane {
 		switch (s) {
 			default:
 				break;
+			case "Bombe":
+				iv.setImage(iBombe);
+				break;
+			case "Bombenplatz":
+				iv.setImage(iBombenPlatz);
+				break;
+			case "Key":
+				iv.setImage(iKey);
+				break;
+			case "Keylock":
+				iv.setImage(iKeylock);
+				break;
+			case "Player":
+				iv.setImage(iPlayer);
+				break;
 			case "Sand":
 				iv.setImage(iSand);
 				break;
+			case "Schlucht":
+				iv.setImage(iSchlucht);
+				break;
 			case "Wand":
 				iv.setImage(iWand);
+				break;
+			case "Wandwall":
+				iv.setImage(iWandwall);
 				break;
 		}
 	}
