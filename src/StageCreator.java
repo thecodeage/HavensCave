@@ -26,7 +26,7 @@ public class StageCreator extends GridPane{
     private ImageView[][] views;
     private Player p;
     
-    Image iPlayer, iWand, iBoden;
+    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
     public StageCreator(Level pL) {
         level = pL;
@@ -36,18 +36,27 @@ public class StageCreator extends GridPane{
 
         views = new ImageView[level.getHoehe()][level.getBreite()];
 
-        initPics();
+        initImages();
         init();
     }
-    public void initPics() {
-    	try {
-            iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
-            iBoden = new Image(new FileInputStream("src\\res\\img\\sand.png"));
-            iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
+    public void initImages() {
+		try {
+			iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
+			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
+			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
+			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
+			iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
+			iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+			iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
+			iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
+			iWandwall = new Image(new FileInputStream("src\\res\\img\\wandwall.png"));
+			
+			iEmpty = new Image(new FileInputStream("src\\res\\img\\empty.png"));
+
     	} catch (FileNotFoundException e) {
     		e.printStackTrace();
     	}
-    }
+	}
 
     public void init() {
         for(int i = 0;i<level.getHoehe();i++) {
@@ -58,7 +67,7 @@ public class StageCreator extends GridPane{
                     imageView.setFitWidth(32);
                     add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Sand) {
-                    ImageView imageView = new ImageView(iBoden);
+                    ImageView imageView = new ImageView(iSand);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
                     add(imageView, j*32, i*32);

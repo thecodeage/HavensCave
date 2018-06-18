@@ -4,6 +4,7 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -37,17 +38,19 @@ public class HavensCave extends Application
     {
 
     	
-<<<<<<< HEAD
+
     	Scene scene = new Scene(mm);
-=======
-    	Scene scene = new Scene(sc);
->>>>>>> 11879e3dbd40d7f2d99b7827c7919600e9cea8ad
+
+    	//Scene scene = new Scene(sc);
+
     	sc.initKeyListener(scene);
     	
         stage.setTitle("Haven's Cave Adventure");
         stage.setScene(scene);
-        //stage.setResizable(false);
-        //stage.sizeToScene();
+        stage.setResizable(false);
+        stage.sizeToScene();
+        //stage.getIcons().add(new Image(HavensCave.class.getResourceAsStream("src\\res\\img\\player.png")));
+        stage.getIcons().add(new Image("file:src\\res\\img\\player.png"));
         stage.show();
         
         
