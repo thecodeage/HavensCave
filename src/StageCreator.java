@@ -25,6 +25,8 @@ public class StageCreator extends GridPane{
     private Level level;
     private ImageView[][] views;
     private Player p;
+    
+    Image iPlayer, iWand, iBoden;
 
     public StageCreator(Level pL) {
         level = pL;
@@ -34,43 +36,20 @@ public class StageCreator extends GridPane{
 
         views = new ImageView[level.getHoehe()][level.getBreite()];
 
+        initPics();
         init();
+    }
+    public void initPics() {
+    	try {
+            iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
+            iBoden = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+            iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
+    	} catch (FileNotFoundException e) {
+    		e.printStackTrace();
+    	}
     }
 
     public void init() {
-        //Passing FileInputStream object as a parameter 
-        FileInputStream isWand;
-        Image iWand = null;
-        try {
-            isWand = new FileInputStream("src\\res\\img\\wand.png"); //C:\\images\\image.jpg
-            iWand = new Image(isWand); 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-
-        FileInputStream isBoden;
-        Image iBoden = null;
-        try {
-            isBoden = new FileInputStream("src\\res\\img\\sand.png"); //C:\\images\\image.jpg
-            iBoden = new Image(isBoden); 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-        FileInputStream isPlayer;
-        Image iPlayer = null;
-        try {
-            isPlayer = new FileInputStream("src\\res\\img\\player.png"); //C:\\images\\image.jpg
-            iPlayer = new Image(isPlayer); 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-
-                 
-        //Loading image from URL 
-        //Image image = new Image(new FileInputStream("url for the image));
         for(int i = 0;i<level.getHoehe();i++) {
             for(int j = 0;j<level.getBreite();j++) {
                 if(level.boden[i][j] == null) {
@@ -85,7 +64,15 @@ public class StageCreator extends GridPane{
                     add(imageView, j*32, i*32);
                 }
 
-                if(level.entities[i][j] instanceof Player) {
+                
+                if(level.entities[i][j] == null) {
+                	ImageView imageView = new ImageView();
+                	imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                    imageView.toFront();
+                    views[i][j] = imageView;
+                }else if(level.entities[i][j] instanceof Player) {
                     ImageView imageView = new ImageView(iPlayer);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
@@ -93,10 +80,8 @@ public class StageCreator extends GridPane{
                     imageView.toFront();
                     views[i][j] = imageView;
                 }
-                //und entities
             }
         }
-
     }
     
     public void initKeyListener(Scene scene) {
@@ -121,20 +106,32 @@ public class StageCreator extends GridPane{
         int x = p.getX();
         int y = p.getY();
         
-        if(direction.equals("up")){
-            //check darueber
-            //imageview verschieben
-            //playerobejekt verschieben
-            /*
-            level.entities[y+1][x] = level.entities[y][x];
-                        level.entities[y][x] = null;
-                        views[y+1][x] = views[y][x];
-                        views[y][x] = null;
-                        views[y+1][x].setLayoutY(views[y+1][x].getLayoutY());*/
-                        System.out.println("up");
-                        
-            Button b = new Button();
-            add(b, x, y+1);
+       
+        switch (direction) {
+        	case "up":
+        		views[y-1][x].setImage(iPlayer);
+        		views[y-1][x].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setY(y-1);
+        		break;
+        	case "down":
+        		views[y+1][x].setImage(iPlayer);
+        		views[y+1][x].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setY(y+1);
+        		break;
+        	case "left":
+        		views[y][x-1].setImage(iPlayer);
+        		views[y][x-1].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setX(x-1);
+        		break;
+        	case "right":
+        		views[y][x+1].setImage(iPlayer);
+        		views[y][x+1].setVisible(true);
+            	views[y][x].setVisible(false);
+            	p.setX(x+1);
+        		break;
         }
         /*
         while(!find) { //muss geloescht werden
