@@ -26,7 +26,7 @@ public class Leveleditor extends GridPane {
     private ChoiceBox<String> akt;
     private ImageView showAkt;
     
-    Image iPlayer, iWand, iBoden, iSand;
+    Image iBombe, iBombenPlatz, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
 	public Leveleditor() {
 		hoehe = 16;
@@ -45,10 +45,16 @@ public class Leveleditor extends GridPane {
 	
 	public void initImages() {
 		try {
-            iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
-            iBoden = new Image(new FileInputStream("src\\res\\img\\sand.png"));
-            iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
-            iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+			iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
+			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
+			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
+			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
+			iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
+			iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+			iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
+			iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
+			iWandwall = new Image(new FileInputStream("src\\res\\img\\wandwall.png"));
+
     	} catch (FileNotFoundException e) {
     		e.printStackTrace();
     	}
@@ -93,15 +99,8 @@ public class Leveleditor extends GridPane {
 			      @Override
 			      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
 			        String item = akt.getItems().get((Integer) number2);
-			        
-			        
-			        
-			        if(item.equals("Sand")) {
-			        	showAkt.setImage(iSand);
-			        }
-			        if(item.equals("Wand")) {
-			        	showAkt.setImage(iWand);
-			        }
+	
+			        changeImage(showAkt, item);
 			        
 			      }
 			    });
@@ -115,16 +114,21 @@ public class Leveleditor extends GridPane {
 	
 	public void buttonClicked(MouseEvent e) {
 		ImageView feld = (ImageView) e.getSource();
-
-		switch (akt.getValue()) {
+		changeImage(feld, akt.getValue());
+	}	
+	
+	public void changeImage(ImageView iv, String s) {
+		switch (s) {
+			default:
+				break;
 			case "Sand":
-				feld.setImage(iSand);
+				iv.setImage(iSand);
 				break;
 			case "Wand":
-				feld.setImage(iWand);
+				iv.setImage(iWand);
 				break;
 		}
-	}	
+	}
 	
 	public int getBreite() {
 		return breite;
