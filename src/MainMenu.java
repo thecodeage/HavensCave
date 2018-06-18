@@ -1,5 +1,11 @@
+import java.io.FileInputStream;
+
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
@@ -15,7 +21,7 @@ public class MainMenu extends GridPane{
 	Text tTitel = new Text("Haven's Cave Adventure!");
 	DropShadow ds = new DropShadow();
 	
-	//Image hintergrundbild = new Image(MainMenu.class.getResource(""));
+	Image hintergrundbild = new Image(new FileInputStream("src\\res\\img\\mainmenu.png"));
 	BackgroundSize backgroundSize = new BackgroundSize(1024, 512, false, false, true, false);
 	BackgroundImage backgroundImage = new BackgroundImage (hintergrundbild, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 	Background background = new Background(backgroundImage);
