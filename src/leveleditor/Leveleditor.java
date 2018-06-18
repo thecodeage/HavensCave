@@ -104,7 +104,7 @@ public class Leveleditor extends GridPane {
 				feld1.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						buttonClicked(e);
+						buttonClicked2(e);
 					}
 					
 				});
@@ -135,8 +135,10 @@ public class Leveleditor extends GridPane {
 				}
 			});
 			editor.add(bEbene, 0, 0);
-		
 			editor.setHgap(8);
+			
+			//###################
+			
 			showAkt = new ImageView(iSand);
 			showAkt.setFitHeight(32);
 			showAkt.setFitWidth(32);
@@ -155,6 +157,26 @@ public class Leveleditor extends GridPane {
 			      }});
 			
 			editor.add(akt, 1, 0);
+			
+			//#########################
+			showAkt2 = new ImageView(iBombe);
+			showAkt2.setFitHeight(32);
+			showAkt2.setFitWidth(32);
+			editor.add(showAkt2, 4, 0);
+			ObservableList<String> elementliste2 //
+	        = FXCollections.observableArrayList("Bombe", "Key", "Player");
+			akt2 = new ChoiceBox<String>(elementliste2);
+			akt2.setValue("Bombe");
+			akt2.autosize();
+			akt2.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			      @Override
+			      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+			        String item = akt2.getItems().get((Integer) number2);
+	
+			        changeImage(showAkt2, item);
+			      }});
+			
+			editor.add(akt2, 5, 0);
 			
 			Button bSave = new Button("Save");
 			bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -195,8 +217,20 @@ public class Leveleditor extends GridPane {
 					if(vBoden[i][j].getImage() == iSchlucht) {
 						s = s+"boden["+i+"]["+j+"] = new Schlucht();";
 					}
+				}
+				//##################
+				if(vEntities[i][j] == null) {
 					
-				
+				}else {
+					if(vEntities[i][j].getImage() == iBombe) {
+						s = s+"entities["+i+"]["+j+"] = new Bombe();";
+					}
+					if(vEntities[i][j].getImage() == iKey) {
+						s = s+"entities["+i+"]["+j+"] = new Key();";
+					}
+					if(vEntities[i][j].getImage() == iPlayer) {
+						s = s+"entities["+i+"]["+j+"] = new Player();";
+					}
 				}
 			}
 		}
@@ -206,6 +240,10 @@ public class Leveleditor extends GridPane {
 	public void buttonClicked(MouseEvent e) {
 		ImageView feld = (ImageView) e.getSource();
 		changeImage(feld, akt.getValue());
+	}	
+	public void buttonClicked2(MouseEvent e) {
+		ImageView feld = (ImageView) e.getSource();
+		changeImage(feld, akt2.getValue());
 	}	
 	
 	public void changeImage(ImageView iv, String s) {
