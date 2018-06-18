@@ -44,6 +44,8 @@ public class MainMenu extends GridPane{
 		BackgroundImage backgroundImage = new BackgroundImage (hintergrundbild, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 		Background background = new Background(backgroundImage);
 		
+		style();
+		
 		//setGridLinesVisible(true);
 		setPadding(new Insets(5,5,5,5));
 		
@@ -69,8 +71,11 @@ public class MainMenu extends GridPane{
 		add(bLevelEditor, 0, 3);
 		
 	}
-	//private void style() {
-		//bStart.setStyle("");
-	//}
+	private void style() {
+		bStart.setStyle(""
+				+ "-fx-font-size: 15;"
+                + "-fx-text-fill: black;"
+                + "-fx-font-weight: bold;");
+	}
 
 }
