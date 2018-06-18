@@ -3,6 +3,7 @@
 import java.io.File;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -20,6 +21,9 @@ import leveleditor.Leveleditor;
 public class HavensCave extends Application
 {
     
+	Stage s;
+	Scene startlevel;
+	
 	private StageCreator sc = new StageCreator(new L1());
 	private Leveleditor le = new Leveleditor();
 	private MainMenu mm = new MainMenu();
@@ -39,7 +43,7 @@ public class HavensCave extends Application
 
     	
 
-    	Scene scene = new Scene(sc);
+    	Scene scene = new Scene(mm);
 
     	//Scene scene = new Scene(sc);
 
@@ -53,9 +57,16 @@ public class HavensCave extends Application
         stage.getIcons().add(new Image("file:src\\res\\img\\player.png"));
         stage.show();
         
-        
+        s = stage;
+        startlevel = new Scene(sc);
+        mm.bStart.setOnAction(this::startLevel);
         
         mediaPlayer.setVolume(0.2);
         mediaPlayer.play();
+    }
+    
+    private void startLevel(ActionEvent e){
+        s.setScene(startlevel);
+        s.show();
     }
 }
