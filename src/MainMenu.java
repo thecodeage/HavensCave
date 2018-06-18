@@ -1,6 +1,8 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -25,6 +27,7 @@ public class MainMenu extends GridPane{
 	
 	Button bStart = new Button("Play");
 	Button bCredits = new Button("Credits");
+	Button bLevelEditor = new Button("Level Editor");
 	Text tTitel = new Text("Haven's Cave Adventure");
 	DropShadow ds = new DropShadow();
 	Image hintergrundbild;
@@ -63,13 +66,11 @@ public class MainMenu extends GridPane{
 		add(tTitel, 0, 0);
 		add(bStart, 0, 1);
 		add(bCredits, 0, 2);
-		/*
-		private style() {
-			bStart.setStyle(""
-				
-		} */
-		
+		add(bLevelEditor, 0, 3);
 		
 	}
+	//private void style() {
+		//bStart.setStyle("");
+	//}
 
 }
