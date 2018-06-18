@@ -21,6 +21,7 @@ public class HavensCave extends Application
     
 	private StageCreator sc = new StageCreator(new L1());
 	private Leveleditor le = new Leveleditor();
+	private MainMenu mm = new MainMenu();
 	
 	String musicFile = "src\\res\\audio\\PushysCaveAdventure.mp3";     // For example
 	Media sound = new Media(new File(musicFile).toURI().toString());
@@ -37,18 +38,18 @@ public class HavensCave extends Application
 
     	
         //Scene scene = new Scene(sc);
-    	Scene scene = new Scene(sc);
+    	Scene scene = new Scene(mm);
     	sc.initKeyListener(scene);
     	
         stage.setTitle("Haven's Cave Adventure");
         stage.setScene(scene);
-        stage.setResizable(false);
-        stage.sizeToScene();
+        //stage.setResizable(false);
+        //stage.sizeToScene();
         stage.show();
         
         
         
         mediaPlayer.setVolume(0.2);
-        //mediaPlayer.play();
+        mediaPlayer.play();
     }
 }
