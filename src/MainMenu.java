@@ -36,6 +36,7 @@ public class MainMenu extends GridPane{
 		BackgroundImage backgroundImage = new BackgroundImage (hintergrundbild, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 		Background background = new Background(backgroundImage);
 		
+		setBackground(background); //bist du behindert
 		
 		setHeight(512);
 		setWidth(1024);

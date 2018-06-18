@@ -28,8 +28,11 @@ public class Leveleditor extends GridPane {
 	private int hoehe, breite;
 	public Entity[][] entities;
     public Boden[][] boden;
+    
     private ChoiceBox<String> akt;
     private ImageView showAkt;
+    private ChoiceBox<String> akt2;
+    private ImageView showAkt2;
     private Button bEbene;
     
     private ImageView[][] vBoden;
