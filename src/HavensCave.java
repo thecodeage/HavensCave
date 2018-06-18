@@ -15,8 +15,8 @@ import leveleditor.Leveleditor;
 /**
  * Write a description of JavaFX class PushyIsland here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Steven, Dane, Max
+ * @version 1.0
  */
 public class HavensCave extends Application
 {
