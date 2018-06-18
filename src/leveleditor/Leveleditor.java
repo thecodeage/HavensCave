@@ -41,8 +41,7 @@ public class Leveleditor extends GridPane {
     GridPane pane0 = new GridPane();
 	GridPane pane1 = new GridPane();
     
-    Image iBombe, iBombenPlatz, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
-    Image iEmpty;
+    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
 	public Leveleditor() {
 		hoehe = 16;
