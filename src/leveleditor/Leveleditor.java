@@ -41,7 +41,7 @@ public class Leveleditor extends GridPane {
     GridPane pane0 = new GridPane();
 	GridPane pane1 = new GridPane();
     
-    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
+    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
 	public Leveleditor() {
 		hoehe = 16;
@@ -67,6 +67,7 @@ public class Leveleditor extends GridPane {
 			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
 			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
 			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
+			iLadder = new Image(new FileInputStream("src\\res\\img\\ladder.png"));
 			iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
 			iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
 			iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
@@ -144,7 +145,7 @@ public class Leveleditor extends GridPane {
 			showAkt.setFitWidth(32);
 			editor.add(showAkt, 2, 0);
 			ObservableList<String> elementliste //
-	        = FXCollections.observableArrayList("Bombenplatz", "Keylock", "Sand", "Schlucht", "Wand", "Wandwall");
+	        = FXCollections.observableArrayList("Bombenplatz", "Keylock", "Ladder", "Sand", "Schlucht", "Wand", "Wandwall");
 			akt = new ChoiceBox<String>(elementliste);
 			akt.setValue("Sand");
 			akt.autosize();
@@ -211,6 +212,9 @@ public class Leveleditor extends GridPane {
 					if(vBoden[i][j].getImage() == iKeylock) {
 						s = s+"boden["+i+"]["+j+"] = new KeyLock();";
 					}
+					if(vBoden[i][j].getImage() == iLadder) {
+						s = s+"boden["+i+"]["+j+"] = new Ladder();";
+					}
 					if(vBoden[i][j].getImage() == iSand) {
 						s = s+"boden["+i+"]["+j+"] = new Sand();";
 					}
@@ -268,6 +272,9 @@ public class Leveleditor extends GridPane {
 				break;
 			case "Keylock":
 				iv.setImage(iKeylock);
+				break;
+			case "Ladder":
+				iv.setImage(iLadder);
 				break;
 			case "Player":
 				iv.setImage(iPlayer);
