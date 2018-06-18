@@ -30,10 +30,15 @@ public class Leveleditor extends GridPane {
     public Boden[][] boden;
     private ChoiceBox<String> akt;
     private ImageView showAkt;
+    private Button bEbene;
     
     private ImageView[][] vBoden;
+    private ImageView[][] vEntities;
+    GridPane pane0 = new GridPane();
+	GridPane pane1 = new GridPane();
     
     Image iBombe, iBombenPlatz, iKey, iKeylock, iPlayer, iSand, iSchlucht, iWand, iWandwall;
+    Image iEmpty;
 	
 	public Leveleditor() {
 		hoehe = 16;
@@ -43,8 +48,10 @@ public class Leveleditor extends GridPane {
 		entities = new Entity[hoehe][breite];
         boden = new Boden[hoehe][breite];
         vBoden = new ImageView[hoehe][breite];
+        vEntities = new ImageView[hoehe][breite];
 
 		setVgap(16);
+		
 		
 		initImages();
 		initButtons();
@@ -62,6 +69,8 @@ public class Leveleditor extends GridPane {
 			iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
 			iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
 			iWandwall = new Image(new FileInputStream("src\\res\\img\\wandwall.png"));
+			
+			iEmpty = new Image(new FileInputStream("src\\res\\img\\empty.png"));
 
     	} catch (FileNotFoundException e) {
     		e.printStackTrace();
@@ -69,8 +78,6 @@ public class Leveleditor extends GridPane {
 	}
 	
 	public void initButtons() {
-		GridPane pane = new GridPane();
-		
 		for(int i = 0;i<hoehe;i++) {
 			for(int j = 0;j<breite;j++) {
 				
@@ -85,20 +92,52 @@ public class Leveleditor extends GridPane {
 					
 				});
 				vBoden[i][j] = feld;
-				pane.add(feld, j, i);
+				pane0.add(feld, j, i);
+				
+				//################
+				ImageView feld1 = new ImageView(iEmpty);
+				feld1.setFitHeight(32);
+				feld1.setFitWidth(32);
+				feld1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						buttonClicked(e);
+					}
+					
+				});
+				vEntities[i][j] = feld1;
+				pane1.add(feld1, j, i);
 			}
 		}
 		
-		add(pane, 0, 0);
+		add(pane0, 0, 0);
+		add(pane1, 0, 0);
+		pane1.toBack();
 	}
 
 	public void initEditor() {
 		GridPane editor = new GridPane();
 		
+			bEbene = new Button("Akt: Boden");
+			bEbene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent arg0) {
+					if(bEbene.getText().equals("Akt: Boden")) {
+						bEbene.setText("Akt: Entities");
+						pane1.toFront();
+					}else {
+						bEbene.setText("Akt: Boden");
+						pane1.toBack();
+					}
+				}
+			});
+			editor.add(bEbene, 0, 0);
+		
+			editor.setHgap(8);
 			showAkt = new ImageView(iSand);
 			showAkt.setFitHeight(32);
 			showAkt.setFitWidth(32);
-			editor.add(showAkt, 1, 0);
+			editor.add(showAkt, 2, 0);
 			ObservableList<String> elementliste //
 	        = FXCollections.observableArrayList("Bombenplatz", "Keylock", "Sand", "Schlucht", "Wand", "Wandwall");
 			akt = new ChoiceBox<String>(elementliste);
@@ -112,7 +151,7 @@ public class Leveleditor extends GridPane {
 			        changeImage(showAkt, item);
 			      }});
 			
-			editor.add(akt, 0, 0);
+			editor.add(akt, 1, 0);
 			
 			Button bSave = new Button("Save");
 			bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -124,10 +163,13 @@ public class Leveleditor extends GridPane {
 				}
 				
 			});
-			editor.add(bSave, 2, 0);
+			editor.add(bSave, 3, 0);
 
 			
 		add(editor, 0, 1);
+		
+		
+		
 	}
 	
 	public void getCode() {
