@@ -25,10 +25,8 @@ public class Leveleditor extends GridPane {
     public Boden[][] boden;
     private ChoiceBox<String> akt;
     private ImageView showAkt;
-    FileInputStream isWand;
-	Image iWand;
-	FileInputStream insSand;
-	Image iSand;
+    
+    Image iPlayer, iWand, iBoden, iSand;
 	
 	public Leveleditor() {
 		hoehe = 16;
@@ -37,9 +35,7 @@ public class Leveleditor extends GridPane {
 		
 		entities = new Entity[hoehe][breite];
         boden = new Boden[hoehe][breite];
-		
-		//setHeight(hoehe*32);
-		//setWidth(breite*32);
+
 		setVgap(16);
 		
 		initImages();
@@ -49,20 +45,13 @@ public class Leveleditor extends GridPane {
 	
 	public void initImages() {
 		try {
-			isWand = new FileInputStream("src\\res\\img\\wand.png"); //C:\\images\\image.jpg
-			iWand = new Image(isWand); 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			insSand = new FileInputStream("src\\res\\img\\sand.png"); //C:\\images\\image.jpg
-			iSand = new Image(insSand); 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+            iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
+            iBoden = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+            iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
+            iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+    	} catch (FileNotFoundException e) {
+    		e.printStackTrace();
+    	}
 	}
 	
 	public void initButtons() {
@@ -118,10 +107,7 @@ public class Leveleditor extends GridPane {
 			    });
 			
 			editor.add(akt, 0, 0);
-			
-			
-		
-			
+
 			
 		add(editor, 0, 1);
 	}
@@ -129,14 +115,15 @@ public class Leveleditor extends GridPane {
 	
 	public void buttonClicked(MouseEvent e) {
 		ImageView feld = (ImageView) e.getSource();
-		if(akt.getValue().equals("Sand")) {
-			feld.setImage(iSand);
+
+		switch (akt.getValue()) {
+			case "Sand":
+				feld.setImage(iSand);
+				break;
+			case "Wand":
+				feld.setImage(iWand);
+				break;
 		}
-		if(akt.getValue().equals("Wand")) {
-			feld.setImage(iWand);
-		}
-		
-		
 	}	
 	
 	public int getBreite() {

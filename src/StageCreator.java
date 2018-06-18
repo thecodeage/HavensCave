@@ -26,7 +26,6 @@ public class StageCreator extends GridPane{
     private ImageView[][] views;
     private Player p;
     
-    FileInputStream isPlayer, isWand, isBoden;
     Image iPlayer, iWand, iBoden;
 
     public StageCreator(Level pL) {
@@ -42,12 +41,9 @@ public class StageCreator extends GridPane{
     }
     public void initPics() {
     	try {
-    		isWand = new FileInputStream("src\\res\\img\\wand.png"); //C:\\images\\image.jpg
-            iWand = new Image(isWand);
-            isBoden = new FileInputStream("src\\res\\img\\sand.png"); //C:\\images\\image.jpg
-            iBoden = new Image(isBoden);
-            isPlayer = new FileInputStream("src\\res\\img\\player.png"); //C:\\images\\image.jpg
-            iPlayer = new Image(isPlayer);
+            iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
+            iBoden = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+            iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
     	} catch (FileNotFoundException e) {
     		e.printStackTrace();
     	}
