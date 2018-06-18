@@ -71,7 +71,7 @@ public class MainMenu extends GridPane{
 		add(bLevelEditor, 0, 2);
 		
 	}
-	private void style() {
+	private void style() { //Hier müssen die Buttons noch angepasst werden
 		bStart.setStyle(""
 				+ "-fx-font-size: 15;"
                 + "-fx-font-weight: bold;"
