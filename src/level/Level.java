@@ -14,26 +14,25 @@ public abstract class Level
     protected int breite, hoehe;
     public Entity[][] entities;
     public Boden[][] boden;
-    
-    
-    public Level(int pHoehe, int pBreite){
-    	breite = pBreite;
-    	hoehe = pHoehe;
+    protected Player p;
 
-    	
+    public Level(int pHoehe, int pBreite){
+        breite = pBreite;
+        hoehe = pHoehe;
+
         entities = new Entity[hoehe][breite];
         boden = new Boden[hoehe][breite];
     }
 
+    public int getBreite() {
+        return breite;
+    }
 
-	public int getBreite() {
-		return breite;
-	}
-
-	public int getHoehe() {
-		return hoehe;
-	}
-
-
+    public int getHoehe() {
+        return hoehe;
+    }
     
+    public Player getPlayer(){
+        return p;
+    }
 }
