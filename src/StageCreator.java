@@ -9,6 +9,7 @@ import boeden.Sand;
 import boeden.Schlucht;
 import boeden.Wandwall;
 import entities.Bombe;
+import entities.Bruchstein;
 import entities.Key;
 import entities.Player;
 import javafx.event.EventHandler;
@@ -33,7 +34,7 @@ public class StageCreator extends GridPane{
     private ImageView[][] views;
     private Player p;
     
-    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
+    Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
     public StageCreator(Level pL) {
         level = pL;
@@ -50,8 +51,10 @@ public class StageCreator extends GridPane{
 		try {
 			iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
 			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
+			iBruchstein = new Image(new FileInputStream("src\\res\\img\\bruchstein.png"));
 			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
 			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
+			iKeylockopen = new Image(new FileInputStream("src\\res\\img\\keylockopen.png"));
 			iLadder = new Image(new FileInputStream("src\\res\\img\\ladder.png"));
 			iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
 			iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
@@ -124,6 +127,13 @@ public class StageCreator extends GridPane{
                     add(imageView, j*32, i*32);
                     imageView.toFront();
                     views[i][j] = imageView;
+                }else if(level.entities[i][j] instanceof Bruchstein) {
+                    ImageView imageView = new ImageView(iBruchstein);
+                    imageView.setFitHeight(32);
+                    imageView.setFitWidth(32);
+                    add(imageView, j*32, i*32);
+                    imageView.toFront();
+                    views[i][j] = imageView;
                 }else if(level.entities[i][j] instanceof Key) {
                     ImageView imageView = new ImageView(iKey);
                     imageView.setFitHeight(32);
@@ -165,99 +175,150 @@ public class StageCreator extends GridPane{
         int y = p.getY();
         int xN = x;
         int yN = y;
+        int xE = x;
+        int yE = y;
         switch (direction) {
         	default: break;
-        	case "up": yN = y-1; break;
-        	case "down": yN = y+1; break;
-        	case "right": xN = x+1; break;
-        	case "left": xN = x-1; break;
+        	case "up": yN = y-1; yE = yN-1; break;
+        	case "down": yN = y+1; yE = yN+1; break;
+        	case "right": xN = x+1; xE = xN+1; break;
+        	case "left": xN = x-1; xE = xN-1; break;
         }
         
         if(xN >= 0 && yN >= 0 && xN < level.getBreite() && yN < level.getHoehe()) {
         	if(level.boden[yN][xN] == null) { //Mauer
-       		 	
+        		dreh(direction, y, x);
 	       	}else if(level.boden[yN][xN].isWalkable()) { // Untergrund ist begehbar
 	       		if(level.entities[yN][xN] == null) { // Nichts im Weg -> Einfach laufen
+	       			level.entities[yN][xN] = p;
+	       			level.entities[y][x] = null;
 	       			views[yN][xN].setImage(iPlayer);
-            		views[yN][xN].setRotate(0);
+            		dreh(direction, yN, xN);
             		views[yN][xN].setVisible(true);
                 	views[y][x].setVisible(false);
-                	p.setY(yN);
+                	p.setY(yN); p.setX(xN);
+                	checkForAction();
 	       		}else if(level.entities[yN][xN].isMoveable()) {
-	       			
+	       			if(!(xE >= 0 && yE >= 0 && xE < level.getBreite() && yE < level.getHoehe())) {
+	       				dreh(direction, y, x);
+	       			}else if(level.boden[yE][xE] == null) {
+	       				dreh(direction, y, x);
+	       			}else if(level.boden[yE][xE] instanceof KeyLock) {
+	       				if(level.entities[yN][xN] instanceof Key) {
+	       					level.entities[yE][xE] = level.entities[yN][xN];
+		       				level.entities[yN][xN] = level.entities[y][x];
+		       				level.entities[y][x] = null;
+		       				
+		       				if(views[yN][xN].getImage() == iBombe){ views[yE][xE].setImage(iBombe); }
+		       				if(views[yN][xN].getImage() == iKey){ views[yE][xE].setImage(iKey);	}
+		       				views[yN][xN].setImage(iPlayer);
+		       				dreh(direction, yN, xN);
+		       				
+		       				views[yE][xE].setVisible(true);
+		       				views[yN][xN].setVisible(true);
+		                	views[y][x].setVisible(false);
+		       				
+		                	p.setY(yN); p.setX(xN);
+		                	
+		                	//KEY INTERACTION
+	                			level.entities[yE][xE] = null;
+	                			views[yE][xE].setImage(iKeylockopen);
+	                		
+		       				
+		       				checkForAction();
+	       				}else {
+	       					dreh(direction, y, x);
+	       				}
+	       			}else if(level.boden[yE][xE].isWalkable()) {
+	       				if(level.entities[yE][xE] == null) {
+	       					level.entities[yE][xE] = level.entities[yN][xN];
+		       				level.entities[yN][xN] = level.entities[y][x];
+		       				level.entities[y][x] = null;
+		       				
+		       				if(views[yN][xN].getImage() == iBombe){ views[yE][xE].setImage(iBombe); }
+		       				if(views[yN][xN].getImage() == iKey){ views[yE][xE].setImage(iKey);	}
+		       				views[yN][xN].setImage(iPlayer);
+		       				dreh(direction, yN, xN);
+		       				
+		       				views[yE][xE].setVisible(true);
+		       				views[yN][xN].setVisible(true);
+		                	views[y][x].setVisible(false);
+		       				
+		                	p.setY(yN); p.setX(xN);
+	
+		                	checkForAction();
+	       				}else {
+	       					dreh(direction, y, x);
+	       				}
+	       			}else {
+	       				dreh(direction, y, x);
+	       			}
 	       		}
 	   		}else { //nicht Walkable
-	   		     
+	   			dreh(direction, y, x);
 	   		}
         }else { //wuerde rauslaufen
-        	
-        }
-        
-       /*
-        switch (direction) {
-        	default:
-        		break;
-        	case "up":
-        		yN = y-1;
-        		xN = x;
-        		if(canWalk(yN, xN)) {
-        			views[yN][xN].setImage(iPlayer);
-            		views[yN][xN].setRotate(0);
-            		views[yN][xN].setVisible(true);
-                	views[y][x].setVisible(false);
-                	p.setY(yN);
-        		}else {
-        			views[y][x].setRotate(0);
-        		}
-        		break;
-        	case "down":
-            	yN = y+1;
-        		xN = x;
-        		if(canWalk(yN, xN)) {
-        			views[yN][xN].setImage(iPlayer);
-            		views[yN][xN].setRotate(180);
-            		views[yN][xN].setVisible(true);
-                	views[y][x].setVisible(false);
-                	p.setY(yN);
-        		}else {
-        			views[y][x].setRotate(180);
-        		}
-        		break;
-        	case "left":
-        		yN = y;
-        		xN = x-1;
-        		if(canWalk(yN, xN)) {
-        			views[yN][xN].setImage(iPlayer);
-            		views[yN][xN].setRotate(270);
-            		views[yN][xN].setVisible(true);
-                	views[y][x].setVisible(false);
-                	p.setX(xN);
-        		}else {
-        			views[y][x].setRotate(270);
-        		}
-        		break;
-        	case "right":
-        		yN = y;
-        		xN = x+1;
-        		if(canWalk(yN, xN)) {
-        			views[yN][xN].setImage(iPlayer);
-            		views[yN][xN].setRotate(90);
-            		views[yN][xN].setVisible(true);
-                	views[y][x].setVisible(false);
-                	p.setX(xN);
-        		}else {
-        			views[y][x].setRotate(90);
-        		}
-        		break;
-        }*/
-        
+        	dreh(direction, y, x);
+        }  
     }
 
+    private void dreh(String dir, int y, int x) {
+    	switch (dir) {
+	    	default: break;
+	    	case "up": views[y][x].setRotate(0); break;
+	    	case "down": views[y][x].setRotate(180); break;
+	    	case "right": views[y][x].setRotate(90); break;
+	    	case "left": views[y][x].setRotate(270); break;
+    	}
+    	
+    }
+    
     private void checkForAction() {
     	int x = p.getX();
     	int y = p.getY();
+    	if(level.boden[y][x] instanceof Ladder) {
+    		boolean finish = true;
+    		for(int i = 0;i<level.getHoehe();i++) {
+                for(int j = 0;j<level.getBreite();j++) {
+                	if(level.entities[i][j] instanceof Key) {              		
+                		finish = false;
+                	}
+                }
+    		}
+    		if(finish) {
+    			System.out.println("WIN");
+    		}
+    	}
+    	if(level.boden[y][x] instanceof Bombenplatz) {
+    		for(int i = 0;i<level.getHoehe();i++) {
+                for(int j = 0;j<level.getBreite();j++) {
+                	if(level.entities[i][j] instanceof Bombe) {              		
+                		views[i][j].setVisible(false);
+                		level.entities[i][j] = null;
+                		
+                		if(level.entities[i-1][j] instanceof Bruchstein) { views[i-1][j].setVisible(false); level.entities[i-1][j] = null; } //up
+                		if(level.entities[i+1][j] instanceof Bruchstein) { views[i+1][j].setVisible(false); level.entities[i+1][j] = null; } //down
+                		if(level.entities[i][j+1] instanceof Bruchstein) { views[i][j+1].setVisible(false); level.entities[i][j+1] = null; } //right
+                		if(level.entities[i][j-1] instanceof Bruchstein) { views[i][j-1].setVisible(false); level.entities[i][j-1] = null; } //left
+                		
+                		if(level.entities[i-1][j] instanceof Player) { verloren(); } //up
+                		if(level.entities[i+1][j] instanceof Player) { verloren(); } //down
+                		if(level.entities[i][j+1] instanceof Player) { verloren(); } //right
+                		if(level.entities[i][j-1] instanceof Player) { verloren(); } //left
+                	}
+                }
+    		}
+    	}
+    	if(level.boden[y][x] instanceof Schlucht) {
+    		System.out.println("VERLOREN -> NEUSTART");
+    	}
+    	
+    	
     }
     
+    private void verloren() {
+    	
+    }
     
     //####### GET & SET ###########################################################################################################
     

@@ -30,7 +30,7 @@ public class Leveleditor extends GridPane {
     private GridPane pane0 = new GridPane();
 	private GridPane pane1 = new GridPane();
     
-    Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
+    Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
 	public Leveleditor() {
 		hoehe = 16;
@@ -51,6 +51,7 @@ public class Leveleditor extends GridPane {
 		try {
 			iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
 			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
+			iBruchstein = new Image(new FileInputStream("src\\res\\img\\bruchstein.png"));
 			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
 			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
 			iLadder = new Image(new FileInputStream("src\\res\\img\\ladder.png"));
@@ -151,7 +152,7 @@ public class Leveleditor extends GridPane {
 			showAkt2.setFitWidth(32);
 			editor.add(showAkt2, 4, 0);
 			ObservableList<String> elementliste2 //
-	        = FXCollections.observableArrayList("Bombe", "Key", "Player", "Empty");
+	        = FXCollections.observableArrayList("Bombe", "Bruchstein", "Key", "Player", "Empty");
 			akt2 = new ChoiceBox<String>(elementliste2);
 			akt2.setValue("Bombe");
 			akt2.autosize();
@@ -207,6 +208,9 @@ public class Leveleditor extends GridPane {
 					if(vBoden[i][j].getImage() == iSchlucht) {
 						s = s+"boden["+i+"]["+j+"] = new Schlucht();";
 					}
+					if(vBoden[i][j].getImage() == iWandwall) {
+						s = s+"boden["+i+"]["+j+"] = new Wandwall();";
+					}
 				}
 				//##################
 				if(vEntities[i][j] == null) {
@@ -217,6 +221,9 @@ public class Leveleditor extends GridPane {
 					}
 					if(vEntities[i][j].getImage() == iBombe) {
 						s = s+"entities["+i+"]["+j+"] = new Bombe();";
+					}
+					if(vEntities[i][j].getImage() == iBruchstein) {
+						s = s+"entities["+i+"]["+j+"] = new Bruchstein();";
 					}
 					if(vEntities[i][j].getImage() == iKey) {
 						s = s+"entities["+i+"]["+j+"] = new Key();";
@@ -250,6 +257,9 @@ public class Leveleditor extends GridPane {
 				break;
 			case "Bombenplatz":
 				iv.setImage(iBombenPlatz);
+				break;
+			case "Bruchstein":
+				iv.setImage(iBruchstein);
 				break;
 			case "Empty":
 				iv.setImage(iEmpty);

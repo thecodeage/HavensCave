@@ -8,6 +8,6 @@ package boeden;
 public class Schlucht extends Boden
 {
     public Schlucht(){
-        super(false);
+        super(true);
     }
 }
