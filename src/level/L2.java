@@ -1,5 +1,14 @@
 package level;
 
+import boeden.Bombenplatz;
+import boeden.KeyLock;
+import boeden.Ladder;
+import boeden.Sand;
+import boeden.Schlucht;
+import entities.Bombe;
+import entities.Bruchstein;
+import entities.Key;
+
 public class L2 extends Level{
 	public L2() {
 		super(16,32);
