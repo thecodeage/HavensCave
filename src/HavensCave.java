@@ -22,7 +22,7 @@ public class HavensCave extends Application
 {
     
 	Stage s;
-	Scene startlevel;
+	Scene startlevel, editor;
 	
 	private StageCreator sc = new StageCreator(new L1());
 	private Leveleditor le = new Leveleditor();
@@ -59,8 +59,10 @@ public class HavensCave extends Application
         
         s = stage;
         startlevel = new Scene(sc);
+        editor = new Scene(le);
         
         mm.bStart.setOnAction(this::startLevel);
+        mm.bLevelEditor.setOnAction(this::startEditor);
         
         mediaPlayer.setVolume(0.2);
         mediaPlayer.play();
@@ -69,6 +71,12 @@ public class HavensCave extends Application
     private void startLevel(ActionEvent e){
         s.setScene(startlevel);
         sc.initKeyListener(startlevel);
+        s.show();
+    }
+    
+    private void startEditor(ActionEvent e){
+        s.setScene(editor);
+        //sc.initKeyListener(startlevel);
         s.show();
     }
 }

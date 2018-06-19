@@ -163,8 +163,37 @@ public class StageCreator extends GridPane{
     public void move(String direction) {
         int x = p.getX();
         int y = p.getY();
-        int yN, xN;
-       
+        int xN = x;
+        int yN = y;
+        switch (direction) {
+        	default: break;
+        	case "up": yN = y-1; break;
+        	case "down": yN = y+1; break;
+        	case "right": xN = x+1; break;
+        	case "left": xN = x-1; break;
+        }
+        
+        if(xN >= 0 && yN >= 0 && xN < level.getBreite() && yN < level.getHoehe()) {
+        	if(level.boden[yN][xN] == null) { //Mauer
+       		 	
+	       	}else if(level.boden[yN][xN].isWalkable()) { // Untergrund ist begehbar
+	       		if(level.entities[yN][xN] == null) { // Nichts im Weg -> Einfach laufen
+	       			views[yN][xN].setImage(iPlayer);
+            		views[yN][xN].setRotate(0);
+            		views[yN][xN].setVisible(true);
+                	views[y][x].setVisible(false);
+                	p.setY(yN);
+	       		}else if(level.entities[yN][xN].isMoveable()) {
+	       			
+	       		}
+	   		}else { //nicht Walkable
+	   		     
+	   		}
+        }else { //wuerde rauslaufen
+        	
+        }
+        
+       /*
         switch (direction) {
         	default:
         		break;
@@ -220,20 +249,17 @@ public class StageCreator extends GridPane{
         			views[y][x].setRotate(90);
         		}
         		break;
-        }
+        }*/
         
     }
 
-    private boolean canWalk(int x, int y) {
-    	if(level.boden[x][y] == null) {
-    		return false;
-    	}else if(level.boden[x][y].isWalkable()) {
-    		return true;
-		}else {
-		    return false;
-		}
-    	
+    private void checkForAction() {
+    	int x = p.getX();
+    	int y = p.getY();
     }
+    
+    
+    //####### GET & SET ###########################################################################################################
     
     public int getBreite() {
         return level.getBreite();

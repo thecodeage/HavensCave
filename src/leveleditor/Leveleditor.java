@@ -1,17 +1,8 @@
 package leveleditor;
 
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import boeden.Boden;
-import boeden.Bombenplatz;
-import boeden.KeyLock;
-import boeden.Sand;
-import boeden.Schlucht;
-import entities.Entity;
-import entities.Player;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,8 +18,6 @@ import javafx.scene.layout.GridPane;
 public class Leveleditor extends GridPane {
 
 	private int hoehe, breite;
-	public Entity[][] entities;
-    public Boden[][] boden;
     
     private ChoiceBox<String> akt;
     private ImageView showAkt;
@@ -38,18 +27,15 @@ public class Leveleditor extends GridPane {
     
     private ImageView[][] vBoden;
     private ImageView[][] vEntities;
-    GridPane pane0 = new GridPane();
-	GridPane pane1 = new GridPane();
+    private GridPane pane0 = new GridPane();
+	private GridPane pane1 = new GridPane();
     
     Image iBombe, iBombenPlatz, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
 	public Leveleditor() {
 		hoehe = 16;
 		breite = 32;
-		
-		
-		entities = new Entity[hoehe][breite];
-        boden = new Boden[hoehe][breite];
+
         vBoden = new ImageView[hoehe][breite];
         vEntities = new ImageView[hoehe][breite];
 
@@ -249,6 +235,7 @@ public class Leveleditor extends GridPane {
 		ImageView feld = (ImageView) e.getSource();
 		changeImage(feld, akt.getValue());
 	}	
+	
 	public void buttonClicked2(MouseEvent e) {
 		ImageView feld = (ImageView) e.getSource();
 		changeImage(feld, akt2.getValue());

@@ -17,4 +17,8 @@ public class Entity
     public Entity() {
     	moveable = false;
     }
+    
+    public boolean isMoveable() {
+    	return moveable;
+    }
 }
