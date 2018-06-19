@@ -5,7 +5,11 @@ import java.io.File;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -40,7 +44,6 @@ public class HavensCave extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-
     	
 
     	Scene scene = new Scene(mm);

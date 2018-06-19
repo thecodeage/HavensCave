@@ -21,6 +21,9 @@ import javafx.scene.layout.GridPane;
 import level.L1;
 import level.Level;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 
 /**
  * Write a description of class StageCreator here.
@@ -33,6 +36,7 @@ public class StageCreator extends GridPane{
     private Level level;
     private ImageView[][] views;
     private Player p;
+    private GridPane game;
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
@@ -41,6 +45,8 @@ public class StageCreator extends GridPane{
         p = level.getPlayer();
         setHeight(level.getHoehe());
         setWidth(level.getBreite());
+        
+        game = new GridPane();
 
         views = new ImageView[level.getHoehe()][level.getBreite()];
 
@@ -70,43 +76,67 @@ public class StageCreator extends GridPane{
 	}
 
     public void init() {
+    	// Create MenuBar
+        MenuBar menuBar = new MenuBar();
+        
+        // Create menus
+        Menu fileMenu = new Menu("File");
+        Menu editMenu = new Menu("Edit");
+        Menu helpMenu = new Menu("Help");
+        
+        // Create MenuItems
+        MenuItem newItem = new MenuItem("New");
+        MenuItem openFileItem = new MenuItem("Open File");
+        MenuItem exitItem = new MenuItem("Exit");
+        
+        MenuItem copyItem = new MenuItem("Copy");
+        MenuItem pasteItem = new MenuItem("Paste");
+        
+        // Add menuItems to the Menus
+        fileMenu.getItems().addAll(newItem, openFileItem, exitItem);
+        editMenu.getItems().addAll(copyItem, pasteItem);
+        
+        // Add Menus to the MenuBar
+        menuBar.getMenus().addAll(fileMenu, editMenu, helpMenu);
+        add(menuBar, 0, 0);
+    	
         for(int i = 0;i<level.getHoehe();i++) {
             for(int j = 0;j<level.getBreite();j++) {
                 if(level.boden[i][j] == null) {
                     ImageView imageView = new ImageView(iWand);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Bombenplatz) {
                     ImageView imageView = new ImageView(iBombenPlatz);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof KeyLock) {
                     ImageView imageView = new ImageView(iKeylock);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Ladder) {
                     ImageView imageView = new ImageView(iLadder);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Sand) {
                     ImageView imageView = new ImageView(iSand);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Schlucht) {
                     ImageView imageView = new ImageView(iSchlucht);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }else if(level.boden[i][j] instanceof Wandwall) {
                     ImageView imageView = new ImageView(iWandwall);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                 }
                 
                 
@@ -117,40 +147,42 @@ public class StageCreator extends GridPane{
                 	ImageView imageView = new ImageView();
                 	imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                     imageView.toFront();
                     views[i][j] = imageView;
                 }else if(level.entities[i][j] instanceof Bombe) {
                     ImageView imageView = new ImageView(iBombe);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                     imageView.toFront();
                     views[i][j] = imageView;
                 }else if(level.entities[i][j] instanceof Bruchstein) {
                     ImageView imageView = new ImageView(iBruchstein);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                     imageView.toFront();
                     views[i][j] = imageView;
                 }else if(level.entities[i][j] instanceof Key) {
                     ImageView imageView = new ImageView(iKey);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                     imageView.toFront();
                     views[i][j] = imageView;
                 }else if(level.entities[i][j] instanceof Player) {
                     ImageView imageView = new ImageView(iPlayer);
                     imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
-                    add(imageView, j*32, i*32);
+                    game.add(imageView, j*32, i*32);
                     imageView.toFront();
                     views[i][j] = imageView;
                 }
             }
         }
+        
+        add(game, 0, 1);
     }
     
     public void initKeyListener(Scene scene) {
