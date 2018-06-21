@@ -33,7 +33,7 @@ public class HavensCave extends Application
 	private Leveleditor le = new Leveleditor();
 	private MainMenu mm = new MainMenu();
 	
-	String musicFile = "src\\res\\audio\\PushysCaveAdventure.mp3";     // For example
+	String musicFile = "src\\res\\audio\\PushysCaveTitel.mp3";     // For example
 	Media sound = new Media(new File(musicFile).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
 	
