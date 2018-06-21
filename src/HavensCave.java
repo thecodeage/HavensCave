@@ -32,6 +32,7 @@ public class HavensCave extends Application
 	private StageCreator sc = new StageCreator(new L1());
 	private Leveleditor le = new Leveleditor();
 	private MainMenu mm = new MainMenu();
+	private LevelSelection ls = new LevelSelection();
 	
 	String musicFile = "src\\res\\audio\\PushysCaveTitel.mp3";     // For example
 	Media sound = new Media(new File(musicFile).toURI().toString());
@@ -47,7 +48,7 @@ public class HavensCave extends Application
     {
     	
 
-    	Scene scene = new Scene(mm); //mm
+    	Scene scene = new Scene(ls); //mm
 
     	//Scene scene = new Scene(sc);
 
