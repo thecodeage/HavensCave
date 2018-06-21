@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import level.L1;
 import level.L2;
+import level.L3;
 
 public class LevelSelection extends GridPane {
 	
@@ -265,6 +266,16 @@ public class LevelSelection extends GridPane {
 			@Override
 			public void handle(ActionEvent arg0) {
 				StageCreator sc = new StageCreator(new L2());
+				sc.initMediaPlayer(mPlayer);
+				Scene scene = new Scene(sc);
+				sc.initKeyListener(scene);
+				s.setScene(scene);
+			}
+		});
+		bLevel3.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				StageCreator sc = new StageCreator(new L3());
 				sc.initMediaPlayer(mPlayer);
 				Scene scene = new Scene(sc);
 				sc.initKeyListener(scene);

@@ -44,7 +44,7 @@ public class StageCreator extends GridPane{
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
-    Media bgMusic1, bgMusic2, winSound;
+    Media bgMusic1, bgMusic2, winSound, loseSound;
     MediaPlayer mPlayer;
     Stage s;
     
@@ -52,6 +52,7 @@ public class StageCreator extends GridPane{
     	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
     	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
     	winSound = new Media(new File("src\\res\\audio\\win.mp3").toURI().toString());
+    	loseSound = new Media(new File("src\\res\\audio\\lose.mp3").toURI().toString());
     	
         level = pL;
         p = level.getPlayer();
@@ -380,14 +381,18 @@ public class StageCreator extends GridPane{
     		}
     	}
     	if(level.boden[y][x] instanceof Schlucht) {
-    		System.out.println("VERLOREN -> NEUSTART");
+    		verloren();
     	}
     	
     	
     }
     
     private void verloren() {
-    	
+    	mPlayer.stop();
+    	MediaPlayer mp2 = new MediaPlayer(loseSound);
+		mp2.setVolume(0.6);
+		mp2.play();
+		//init();
     }
     
     //####### GET & SET ###########################################################################################################
