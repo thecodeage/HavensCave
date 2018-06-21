@@ -84,14 +84,20 @@ public class MainMenu extends GridPane{
 				+ "-fx-border: none");
 		
 		bLevelEditor.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
-                + "-fx-border-color: black;");
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
 		
 		bCredits.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
-                + "-fx-border-color: black;");
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
 		
 	}
 

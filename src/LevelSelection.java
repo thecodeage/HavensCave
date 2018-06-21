@@ -17,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class LevelSelection extends GridPane {
+	
 	Button bLevel1 = new Button("Level 1");
 	Button bLevel2 = new Button("Level 2");
 	Button bLevel3 = new Button("Level 3");
