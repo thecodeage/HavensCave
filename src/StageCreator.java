@@ -169,9 +169,6 @@ public class StageCreator extends GridPane{
 			}
         });
         
-        MenuItem copyItem = new MenuItem("Copy");
-        MenuItem pasteItem = new MenuItem("Paste");
-        
         // Add menuItems to the Menus
         sceneMenu.getItems().addAll(item1, item2, item3);
         gameMenu.getItems().addAll(item4, item5);
