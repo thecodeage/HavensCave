@@ -5,6 +5,7 @@ import boeden.KeyLock;
 import boeden.Ladder;
 import boeden.Sand;
 import boeden.Schlucht;
+import boeden.Wandwall;
 import entities.Bombe;
 import entities.Bruchstein;
 import entities.Key;
