@@ -116,8 +116,8 @@ public class MainMenu extends GridPane{
 
 			@Override
 			public void handle(ActionEvent event) {
-				Leveleditor le = new Leveleditor();
-				Scene scene = new Scene(le);
+				LevelSelection ls = new LevelSelection();
+				Scene scene = new Scene(ls);
 				//sc.initKeyListener(scene);
 				s.setScene(scene);
 				/*
@@ -134,10 +134,7 @@ public class MainMenu extends GridPane{
 
 			@Override
 			public void handle(ActionEvent event) {
-				LevelSelection ls = new LevelSelection();
-				Scene scene = new Scene(ls);
-				//sc.initKeyListener(scene);
-				s.setScene(scene);
+				
 			}
 			
 		});
@@ -145,7 +142,10 @@ public class MainMenu extends GridPane{
 
 			@Override
 			public void handle(ActionEvent event) {
-				
+				Leveleditor le = new Leveleditor();
+				Scene scene = new Scene(le);
+				//sc.initKeyListener(scene);
+				s.setScene(scene);
 			}
 			
 		});
