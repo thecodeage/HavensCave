@@ -13,6 +13,10 @@ import entities.Bombe;
 import entities.Bruchstein;
 import entities.Key;
 import entities.Player;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -112,24 +116,65 @@ public class StageCreator extends GridPane{
         MenuBar menuBar = new MenuBar();
         
         // Create menus
-        Menu fileMenu = new Menu("File");
-        Menu editMenu = new Menu("Edit");
-        Menu helpMenu = new Menu("Help");
+        Menu sceneMenu = new Menu("GoTo");
+        Menu gameMenu = new Menu("Spielcommands");
         
         // Create MenuItems
-        MenuItem newItem = new MenuItem("New");
-        MenuItem openFileItem = new MenuItem("Open File");
-        MenuItem exitItem = new MenuItem("Exit");
+        MenuItem item1 = new MenuItem("Main Menü");
+        MenuItem item2 = new MenuItem("Level Selector");
+        MenuItem item3 = new MenuItem("Level Editor");
+        MenuItem item4 = new MenuItem("Neustarten");
+        MenuItem item5 = new MenuItem("Musik Laut"); 
         
-        MenuItem copyItem = new MenuItem("Copy");
-        MenuItem pasteItem = new MenuItem("Paste");
+        item1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				MainMenu mm = new MainMenu();
+				mm.setStage(s);
+				mm.setMediaPlayer(mPlayer);
+				Scene scene = new Scene(mm);
+				s.setScene(scene);
+			}
+        });
+        item2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				LevelSelection ls = new LevelSelection();
+				ls.setStage(s);
+				ls.setMediaPlayer(mPlayer);
+				Scene scene = new Scene(ls);
+				s.setScene(scene);
+			}
+        });
+        item3.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Leveleditor le = new Leveleditor();
+				//le.setStage(s);
+				//le.setMediaPlayer(mPlayer);
+				Scene scene = new Scene(le);
+				s.setScene(scene);
+			}
+        });
+        item4.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//restart
+			}
+        });
+        item5.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				mPlayer.setVolume(1);
+			}
+        });
         
         // Add menuItems to the Menus
-        fileMenu.getItems().addAll(newItem, openFileItem, exitItem);
-        editMenu.getItems().addAll(copyItem, pasteItem);
+        sceneMenu.getItems().addAll(item1, item2, item3);
+        gameMenu.getItems().addAll(item4, item5);
         
         // Add Menus to the MenuBar
-        menuBar.getMenus().addAll(fileMenu, editMenu, helpMenu);
+        menuBar.getMenus().addAll(sceneMenu, gameMenu);
         add(menuBar, 0, 0);
     	
         for(int i = 0;i<level.getHoehe();i++) {
