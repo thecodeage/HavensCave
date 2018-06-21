@@ -14,6 +14,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import level.L1;
+import level.L2;
 import leveleditor.Leveleditor;
 
 /**
@@ -46,7 +47,7 @@ public class HavensCave extends Application
     {
     	
 
-    	Scene scene = new Scene(mm);
+    	Scene scene = new Scene(mm); //mm
 
     	//Scene scene = new Scene(sc);
 
