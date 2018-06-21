@@ -32,9 +32,11 @@ public class MainMenu extends GridPane{
 	DropShadow ds = new DropShadow();
 	Image hintergrundbild;
 	
-	
+	Stage s;
 	
 	public MainMenu() {
+		initButtons();
+		
 		try {
 			hintergrundbild = new Image(new FileInputStream("src\\res\\img\\mainmenu.png"));
 		} catch (FileNotFoundException e) {
@@ -73,12 +75,13 @@ public class MainMenu extends GridPane{
 	}
 	private void style() { //Hier müssen die Buttons noch angepasst werden
 		bStart.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
                 + "-fx-font-weight: bold;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
-				+ "-fx-border: none"); 
+				+ "-fx-border: none");
 		
 		bLevelEditor.setStyle(""
 				+ "-fx-font-size: 15;"
@@ -92,4 +95,43 @@ public class MainMenu extends GridPane{
 		
 	}
 
+	public void setStage(Stage pS) {
+		s = pS;
+	}
+	
+	public void initButtons() {
+		bStart.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				StageCreator sc = new StageCreator(new L1());
+				Scene scene = new Scene(sc);
+				sc.initKeyListener(scene);
+				s.setScene(scene);
+			}
+			
+		});
+		bCredits.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				//StageCreator sc = new StageCreator(new L1());
+				//Scene scene = new Scene(sc);
+				//sc.initKeyListener(scene);
+				//s.setScene(scene);
+			}
+			
+		});
+		bLevelEditor.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				LevelSelection ls = new LevelSelection();
+				//Scene scene = new Scene(ls);
+				//sc.initKeyListener(scene);
+				//s.setScene(scene);
+			}
+			
+		});
+	}
 }
