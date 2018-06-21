@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -14,6 +15,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -49,9 +51,11 @@ public class LevelSelection extends GridPane {
 	Image hintergrundbild;
 	
 	MediaPlayer mPlayer;
+	Media lsMusic;
 	Stage s;
 	
 	public LevelSelection() {
+		lsMusic = new Media(new File("src\\res\\audio\\PushysCaveLevelSelection.mp3").toURI().toString());
 		try {
 			hintergrundbild = new Image(new FileInputStream("src\\res\\img\\mainmenu.png"));
 		} catch (FileNotFoundException e) {
@@ -248,12 +252,17 @@ public class LevelSelection extends GridPane {
 	
 	public void setMediaPlayer(MediaPlayer mp) {
 		mPlayer = mp;
+		mPlayer.stop();
+		mPlayer = new MediaPlayer(lsMusic);
+		mPlayer.setVolume(0.2);
+		mPlayer.play();
 	}
 	
 	public void initButtons() {
 		bLevel1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				startsound();
 				StageCreator sc = new StageCreator(new L1());
 				sc.initMediaPlayer(mPlayer);
 				sc.setStage(s);
@@ -265,6 +274,7 @@ public class LevelSelection extends GridPane {
 		bLevel2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				startsound();
 				StageCreator sc = new StageCreator(new L2());
 				sc.initMediaPlayer(mPlayer);
 				Scene scene = new Scene(sc);
@@ -275,6 +285,7 @@ public class LevelSelection extends GridPane {
 		bLevel3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				startsound();
 				StageCreator sc = new StageCreator(new L3());
 				sc.initMediaPlayer(mPlayer);
 				Scene scene = new Scene(sc);
@@ -282,5 +293,11 @@ public class LevelSelection extends GridPane {
 				s.setScene(scene);
 			}
 		});
+	}
+	
+	public void startsound() {
+		MediaPlayer mp2 = new MediaPlayer(new Media(new File("src\\res\\audio\\start.mp3").toURI().toString()));
+		mp2.setVolume(0.5);
+		mp2.play();
 	}
 }

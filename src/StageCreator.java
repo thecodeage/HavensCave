@@ -106,7 +106,7 @@ public class StageCreator extends GridPane{
     		e.printStackTrace();
     	}
 	}
-
+    
     public void init() {
     	// Create MenuBar
         MenuBar menuBar = new MenuBar();
@@ -233,7 +233,7 @@ public class StageCreator extends GridPane{
                 }
             });
     }
-
+    
     public void move(String direction) {
         int x = p.getX();
         int y = p.getY();
@@ -325,7 +325,7 @@ public class StageCreator extends GridPane{
         	dreh(direction, y, x);
         }  
     }
-
+    
     private void dreh(String dir, int y, int x) {
     	switch (dir) {
 	    	default: break;
@@ -392,7 +392,12 @@ public class StageCreator extends GridPane{
     	MediaPlayer mp2 = new MediaPlayer(loseSound);
 		mp2.setVolume(0.6);
 		mp2.play();
-		//init();
+		
+		LevelSelection ls = new LevelSelection();
+		ls.setStage(s);
+		ls.setMediaPlayer(mPlayer);
+		Scene scene = new Scene(ls);
+		s.setScene(scene);
     }
     
     //####### GET & SET ###########################################################################################################
