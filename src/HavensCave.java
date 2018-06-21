@@ -39,6 +39,7 @@ public class HavensCave extends Application
 
 
     	mm = new MainMenu();;
+    	mm.setMediaPlayer(mediaPlayer);
     	Scene scene = new Scene(mm);
 
         stage.setTitle("Haven's Cave Adventure");
@@ -54,5 +55,6 @@ public class HavensCave extends Application
 
         mediaPlayer.setVolume(0.2);
         mediaPlayer.play();
+        
     }
 }

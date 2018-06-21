@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -33,6 +34,7 @@ public class MainMenu extends GridPane{
 	Image hintergrundbild;
 	
 	Stage s;
+	MediaPlayer mPlayer;
 	
 	public MainMenu() {
 		initButtons();
@@ -105,15 +107,26 @@ public class MainMenu extends GridPane{
 		s = pS;
 	}
 	
+	public void setMediaPlayer(MediaPlayer mp) {
+		mPlayer = mp;
+	}
+	
 	public void initButtons() {
 		bStart.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
+				Leveleditor le = new Leveleditor();
+				Scene scene = new Scene(le);
+				//sc.initKeyListener(scene);
+				s.setScene(scene);
+				/*
 				StageCreator sc = new StageCreator(new L1());
+				sc.initMediaPlayer(mPlayer);
 				Scene scene = new Scene(sc);
 				sc.initKeyListener(scene);
-				s.setScene(scene);
+				s.setScene(scene);*/
+				
 			}
 			
 		});
@@ -132,10 +145,7 @@ public class MainMenu extends GridPane{
 
 			@Override
 			public void handle(ActionEvent event) {
-				Leveleditor le = new Leveleditor();
-				Scene scene = new Scene(le);
-				//sc.initKeyListener(scene);
-				s.setScene(scene);
+				
 			}
 			
 		});

@@ -43,17 +43,18 @@ public class StageCreator extends GridPane{
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
-    Media mainMenuMusic, bgMusic1, bgMusic2;
-    MediaPlayer mediaPlayer;
+    //Media mainMenuMusic, bgMusic1, bgMusic2;
+    MediaPlayer mPlayer;
     
     public StageCreator(Level pL) {
+    	/*
     	mainMenuMusic = new Media(new File("src\\res\\audio\\PushysCaveTitel.mp3").toURI().toString());
     	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
     	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
     	mediaPlayer = new MediaPlayer(bgMusic1);
     	
     	mediaPlayer.setVolume(0.2);
-    	mediaPlayer.play();
+    	mediaPlayer.play();*/
     	
         level = pL;
         p = level.getPlayer();
@@ -67,6 +68,15 @@ public class StageCreator extends GridPane{
         initImages();
         init();
     }
+    
+    public void initMediaPlayer(MediaPlayer mp) {
+    	mPlayer = mp;
+    	mPlayer.stop();
+    	mPlayer = new MediaPlayer(new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString()));
+    	mPlayer.setVolume(0.2);
+    	mPlayer.play();
+    }
+    
     public void initImages() {
 		try {
 			iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
