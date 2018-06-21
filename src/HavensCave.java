@@ -28,20 +28,9 @@ public class HavensCave extends Application
     
 	Stage s;
 	MainMenu mm;
-	
-<<<<<<< HEAD
-	private StageCreator sc = new StageCreator(new L1());
-	private Leveleditor le = new Leveleditor();
-	private MainMenu mm = new MainMenu();
-	private LevelSelection ls = new LevelSelection();
-	
-	String musicFile = "src\\res\\audio\\PushysCaveTitel.mp3";     // For example
-	Media sound = new Media(new File(musicFile).toURI().toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(sound);
-=======
+
 	Media mainMenuMusic, bgMusic1, bgMusic2;
     MediaPlayer mediaPlayer;
->>>>>>> 2128a39c329d65e115657732653fae9b679c2935
 	
     
 	public static void main(String args[]) {
@@ -51,16 +40,11 @@ public class HavensCave extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-<<<<<<< HEAD
-    	
-
-    	Scene scene = new Scene(ls); //mm
-=======
     	mainMenuMusic = new Media(new File("src\\res\\audio\\PushysCaveTitel.mp3").toURI().toString());
     	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
     	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
     	mediaPlayer = new MediaPlayer(mainMenuMusic);
->>>>>>> 2128a39c329d65e115657732653fae9b679c2935
+
 
     	mm = new MainMenu();;
     	Scene scene = new Scene(mm);

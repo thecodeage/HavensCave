@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -18,6 +19,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import level.L1;
 import level.Level;
 import javafx.scene.control.Button;
@@ -40,7 +43,18 @@ public class StageCreator extends GridPane{
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
+    Media mainMenuMusic, bgMusic1, bgMusic2;
+    MediaPlayer mediaPlayer;
+    
     public StageCreator(Level pL) {
+    	mainMenuMusic = new Media(new File("src\\res\\audio\\PushysCaveTitel.mp3").toURI().toString());
+    	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
+    	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
+    	mediaPlayer = new MediaPlayer(bgMusic1);
+    	
+    	mediaPlayer.setVolume(0.2);
+    	mediaPlayer.play();
+    	
         level = pL;
         p = level.getPlayer();
         setHeight(level.getHoehe());
