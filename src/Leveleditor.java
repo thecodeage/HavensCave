@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -236,6 +237,10 @@ public class Leveleditor extends GridPane {
 			}
 		}
 		System.out.println(s);
+		TextArea ta = new TextArea();
+		ta.setText(s);
+		add(ta,0,0);
+		ta.toFront();
 	}
 	
 	public void buttonClicked(MouseEvent e) {
