@@ -255,6 +255,7 @@ public class LevelSelection extends GridPane {
 			public void handle(ActionEvent arg0) {
 				StageCreator sc = new StageCreator(new L1());
 				sc.initMediaPlayer(mPlayer);
+				sc.setStage(s);
 				Scene scene = new Scene(sc);
 				sc.initKeyListener(scene);
 				s.setScene(scene);

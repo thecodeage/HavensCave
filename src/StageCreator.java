@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import level.L1;
 import level.Level;
 import javafx.scene.control.Button;
@@ -43,18 +44,14 @@ public class StageCreator extends GridPane{
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
-    //Media mainMenuMusic, bgMusic1, bgMusic2;
+    Media bgMusic1, bgMusic2, winSound;
     MediaPlayer mPlayer;
+    Stage s;
     
     public StageCreator(Level pL) {
-    	/*
-    	mainMenuMusic = new Media(new File("src\\res\\audio\\PushysCaveTitel.mp3").toURI().toString());
     	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
     	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
-    	mediaPlayer = new MediaPlayer(bgMusic1);
-    	
-    	mediaPlayer.setVolume(0.2);
-    	mediaPlayer.play();*/
+    	winSound = new Media(new File("src\\res\\audio\\win.mp3").toURI().toString());
     	
         level = pL;
         p = level.getPlayer();
@@ -70,11 +67,21 @@ public class StageCreator extends GridPane{
     }
     
     public void initMediaPlayer(MediaPlayer mp) {
+    	
     	mPlayer = mp;
     	mPlayer.stop();
-    	mPlayer = new MediaPlayer(new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString()));
+    	int i = (int) Math.random()*2;
+    	if(i == 1) {
+    		mPlayer = new MediaPlayer(bgMusic1);
+    	}else {
+    		mPlayer = new MediaPlayer(bgMusic2);
+    	}
     	mPlayer.setVolume(0.2);
     	mPlayer.play();
+    }
+    
+    public void setStage(Stage pS) {
+    	s = pS;
     }
     
     public void initImages() {
@@ -342,7 +349,14 @@ public class StageCreator extends GridPane{
                 }
     		}
     		if(finish) {
-    			System.out.println("WIN");
+    			MediaPlayer mp2 = new MediaPlayer(winSound);
+    			mp2.setVolume(0.6);
+    			mp2.play();
+    			LevelSelection ls = new LevelSelection();
+				ls.setStage(s);
+				ls.setMediaPlayer(mPlayer);
+				Scene scene = new Scene(ls);
+				s.setScene(scene);
     		}
     	}
     	if(level.boden[y][x] instanceof Bombenplatz) {
