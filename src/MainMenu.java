@@ -113,25 +113,17 @@ public class MainMenu extends GridPane{
 	
 	public void initButtons() {
 		bStart.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				LevelSelection ls = new LevelSelection();
+				ls.setStage(s);
+				ls.setMediaPlayer(mPlayer);
 				Scene scene = new Scene(ls);
-				//sc.initKeyListener(scene);
 				s.setScene(scene);
-				/*
-				StageCreator sc = new StageCreator(new L1());
-				sc.initMediaPlayer(mPlayer);
-				Scene scene = new Scene(sc);
-				sc.initKeyListener(scene);
-				s.setScene(scene);*/
-				
 			}
 			
 		});
 		bCredits.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				
@@ -139,12 +131,10 @@ public class MainMenu extends GridPane{
 			
 		});
 		bLevelEditor.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				Leveleditor le = new Leveleditor();
 				Scene scene = new Scene(le);
-				//sc.initKeyListener(scene);
 				s.setScene(scene);
 			}
 			

@@ -1,7 +1,10 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -11,10 +14,14 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import level.L1;
+import level.L2;
 
 public class LevelSelection extends GridPane {
 	
@@ -40,7 +47,8 @@ public class LevelSelection extends GridPane {
 	DropShadow ds = new DropShadow();
 	Image hintergrundbild;
 	
-	
+	MediaPlayer mPlayer;
+	Stage s;
 	
 	public LevelSelection() {
 		try {
@@ -53,6 +61,7 @@ public class LevelSelection extends GridPane {
 		Background background = new Background(backgroundImage);
 		
 		style();
+		initButtons();
 		
 		//setGridLinesVisible(true);
 		setPadding(new Insets(5,5,5,5));
@@ -232,4 +241,34 @@ public class LevelSelection extends GridPane {
 				+ "-fx-border: none");
 	}
 	
+	public void setStage(Stage pS) {
+		s = pS;
+	}
+	
+	public void setMediaPlayer(MediaPlayer mp) {
+		mPlayer = mp;
+	}
+	
+	public void initButtons() {
+		bLevel1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				StageCreator sc = new StageCreator(new L1());
+				sc.initMediaPlayer(mPlayer);
+				Scene scene = new Scene(sc);
+				sc.initKeyListener(scene);
+				s.setScene(scene);
+			}
+		});
+		bLevel2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				StageCreator sc = new StageCreator(new L2());
+				sc.initMediaPlayer(mPlayer);
+				Scene scene = new Scene(sc);
+				sc.initKeyListener(scene);
+				s.setScene(scene);
+			}
+		});
+	}
 }
