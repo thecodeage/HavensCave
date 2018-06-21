@@ -18,10 +18,11 @@ import javafx.scene.text.Text;
 
 public class LevelSelection extends GridPane {
 	
+	GridPane pHilfspane = new GridPane();
 	Button bLevel1 = new Button("Level 1");
 	Button bLevel2 = new Button("Level 2");
 	Button bLevel3 = new Button("Level 3");
-	Button bCustom = new Button("Custom Level");
+	Button bCustom = new Button("Custom");
 	Button bLevel4 = new Button("Level 4");
 	Button bLevel5 = new Button("Level 5");
 	Button bLevel6 = new Button("Level 6");
@@ -31,6 +32,10 @@ public class LevelSelection extends GridPane {
 	Button bLevel10 = new Button("Level 10");
 	Button bLevel11 = new Button("Level 11");
 	Button bLevel12 = new Button("Level 12");
+	Button bLevel13 = new Button("Level 13");
+	Button bLevel14 = new Button("Level 14");
+	Button bLevel15 = new Button("Level 15");
+	
 	Text tTitel = new Text("Levelauswahl");
 	DropShadow ds = new DropShadow();
 	Image hintergrundbild;
@@ -56,6 +61,7 @@ public class LevelSelection extends GridPane {
 		setHeight(512);
 		setWidth(1024);
 		setVgap(8.0);
+		
 		//general ds settings
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.BLACK);
@@ -68,46 +74,162 @@ public class LevelSelection extends GridPane {
 		tTitel.setFill(Color.WHITE);;
 		tTitel.setFont(Font.font(null, FontWeight.BOLD, 32));
 		
+		add(pHilfspane, 0, 1);
+		pHilfspane.setVgap(5.0);
+		pHilfspane.setHgap(5.0);
+		
+		
 		add(tTitel, 0, 0);
-		add(bLevel1, 0, 1);
-		add(bLevel3, 0, 3);
-		add(bLevel2, 0, 2);
-		add(bCustom, 0, 6);
-		add(bLevel4, 0, 4);
-		add(bLevel5, 0, 5);
-		add(bLevel6, 1, 1);
-		add(bLevel7, 1, 2);
-		add(bLevel8, 1, 3);
-		add(bLevel9, 1, 4);
-		add(bLevel10, 1, 5);
-		add(bLevel11, 2, 1);
-		add(bLevel12, 2, 2);
+		
+		pHilfspane.add(bLevel1, 0, 0);
+		pHilfspane.add(bLevel2, 0, 1);
+		pHilfspane.add(bLevel3, 0, 2);
+		pHilfspane.add(bCustom, 0, 5);
+		pHilfspane.add(bLevel4, 0, 3);
+		pHilfspane.add(bLevel5, 0, 4);
+		pHilfspane.add(bLevel6, 1, 0);
+		pHilfspane.add(bLevel7, 1, 1);
+		pHilfspane.add(bLevel8, 1, 2);
+		pHilfspane.add(bLevel9, 1, 3);
+		pHilfspane.add(bLevel10, 1, 4);
+		pHilfspane.add(bLevel11, 2, 0);
+		pHilfspane.add(bLevel12, 2, 1);
+		pHilfspane.add(bLevel13, 2, 2);
+		pHilfspane.add(bLevel14, 2, 3);
+		pHilfspane.add(bLevel15, 2, 4);
+		
 		
 		
 	}
 	
 	public void style() {
 		bLevel1.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+		        + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel2.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+		        + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel3.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+		        + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bCustom.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+		        + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel4.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
-				+ ""); 
+				+ "-fx-border: none");
 		
-		bLevel2.setStyle(""
+		bLevel5.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
-                + "-fx-border-color: black;");
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
 		
-		bLevel3.setStyle(""
+		bLevel6.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
-                + "-fx-border-color: black;");
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
 		
-		bCustom.setStyle(""
+		bLevel7.setStyle(""
+				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
-                + "-fx-border-color: black;");
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel8.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel9.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel10.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel11.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel12.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel13.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel14.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
+		
+		bLevel15.setStyle(""
+				+ "-fx-background-radius: 20;"
+				+ "-fx-font-size: 15;"
+				+ "-fx-border-style: solid;"
+                + "-fx-border-color: black;"
+				+ "-fx-border-radius: 20px;"
+				+ "-fx-border: none");
 	}
 	
 }
