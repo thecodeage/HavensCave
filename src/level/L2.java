@@ -5,17 +5,10 @@ import boeden.KeyLock;
 import boeden.Ladder;
 import boeden.Sand;
 import boeden.Schlucht;
-<<<<<<< HEAD
-import boeden.Wandwall;
 import entities.Bombe;
 import entities.Bruchstein;
 import entities.Key;
-import entities.Player;
-=======
-import entities.Bombe;
-import entities.Bruchstein;
-import entities.Key;
->>>>>>> 69d19306f37c5e0ed31dede2f2d9901d66c66904
+
 
 public class L2 extends Level{
 	public L2() {
