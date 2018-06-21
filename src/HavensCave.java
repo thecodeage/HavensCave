@@ -5,17 +5,10 @@ import java.io.File;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import level.L1;
-import level.L2;
-import leveleditor.Leveleditor;
 
 /**
  * Write a description of JavaFX class PushyIsland here.
@@ -62,17 +55,5 @@ public class HavensCave extends Application
 
         mediaPlayer.setVolume(0.2);
         mediaPlayer.play();
-    }
-    
-    private void startLevel(ActionEvent e){
-        //s.setScene(startlevel);
-        //sc.initKeyListener(startlevel);
-        s.show();
-    }
-    
-    private void startEditor(ActionEvent e){
-        //s.setScene(editor);
-        //sc.initKeyListener(startlevel);
-        s.show();
     }
 }
