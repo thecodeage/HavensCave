@@ -27,6 +27,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import level.L1;
+import level.*;
 import level.Level;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -48,16 +49,18 @@ public class StageCreator extends GridPane{
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iKeylockopen, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 
-    Media bgMusic1, bgMusic2, winSound, loseSound;
+    Media bgMusic1, bgMusic2, winSound, loseSound, boomSound, keyUnlockSound;
     MediaPlayer mPlayer;
     Stage s;
     
     public StageCreator(Level pL) {
-    	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
-    	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
-    	winSound = new Media(new File("src\\res\\audio\\win.mp3").toURI().toString());
-    	loseSound = new Media(new File("src\\res\\audio\\lose.mp3").toURI().toString());
-    	
+        bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
+        bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
+        winSound = new Media(new File("src\\res\\audio\\win.mp3").toURI().toString());
+        loseSound = new Media(new File("src\\res\\audio\\lose.mp3").toURI().toString());
+        boomSound = new Media(new File("src\\res\\audio\\explosion.mp3").toURI().toString());
+        keyUnlockSound = new Media(new File("src\\res\\audio\\keyunlock.mp3").toURI().toString());
+        
         level = pL;
         p = level.getPlayer();
         setHeight(level.getHoehe());
@@ -72,47 +75,47 @@ public class StageCreator extends GridPane{
     }
     
     public void initMediaPlayer(MediaPlayer mp) {
-    	
-    	mPlayer = mp;
-    	mPlayer.stop();
-    	int i = (int) Math.random()*2;
-    	if(i == 1) {
-    		mPlayer = new MediaPlayer(bgMusic1);
-    	}else {
-    		mPlayer = new MediaPlayer(bgMusic2);
-    	}
-    	mPlayer.setVolume(0.2);
-    	mPlayer.play();
+        
+        mPlayer = mp;
+        mPlayer.stop();
+        int i = (int) Math.random()*2;
+        if(i == 1) {
+            mPlayer = new MediaPlayer(bgMusic1);
+        }else {
+            mPlayer = new MediaPlayer(bgMusic2);
+        }
+        mPlayer.setVolume(0.2);
+        mPlayer.play();
     }
     
     public void setStage(Stage pS) {
-    	s = pS;
+        s = pS;
     }
     
     public void initImages() {
-		try {
-			iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
-			iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
-			iBruchstein = new Image(new FileInputStream("src\\res\\img\\bruchstein.png"));
-			iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
-			iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
-			iKeylockopen = new Image(new FileInputStream("src\\res\\img\\keylockopen.png"));
-			iLadder = new Image(new FileInputStream("src\\res\\img\\ladder.png"));
-			iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
-			iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
-			iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
-			iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
-			iWandwall = new Image(new FileInputStream("src\\res\\img\\wandwall.png"));
-			
-			iEmpty = new Image(new FileInputStream("src\\res\\img\\empty.png"));
+        try {
+            iBombe = new Image(new FileInputStream("src\\res\\img\\bombe.png"));
+            iBombenPlatz = new Image(new FileInputStream("src\\res\\img\\bombenplatz.png"));
+            iBruchstein = new Image(new FileInputStream("src\\res\\img\\bruchstein.png"));
+            iKey = new Image(new FileInputStream("src\\res\\img\\key.png"));
+            iKeylock = new Image(new FileInputStream("src\\res\\img\\keylock.png"));
+            iKeylockopen = new Image(new FileInputStream("src\\res\\img\\keylockopen.png"));
+            iLadder = new Image(new FileInputStream("src\\res\\img\\ladder.png"));
+            iPlayer = new Image(new FileInputStream("src\\res\\img\\player.png"));
+            iSand = new Image(new FileInputStream("src\\res\\img\\sand.png"));
+            iSchlucht = new Image(new FileInputStream("src\\res\\img\\schlucht.png"));
+            iWand = new Image(new FileInputStream("src\\res\\img\\wand.png"));
+            iWandwall = new Image(new FileInputStream("src\\res\\img\\wandwall.png"));
+            
+            iEmpty = new Image(new FileInputStream("src\\res\\img\\empty.png"));
 
-    	} catch (FileNotFoundException e) {
-    		e.printStackTrace();
-    	}
-	}
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     
     public void init() {
-    	// Create MenuBar
+        // Create MenuBar
         MenuBar menuBar = new MenuBar();
         
         // Create menus
@@ -120,53 +123,56 @@ public class StageCreator extends GridPane{
         Menu gameMenu = new Menu("Spielcommands");
         
         // Create MenuItems
-        MenuItem item1 = new MenuItem("Main Menü");
+        MenuItem item1 = new MenuItem("Main Menue");
         MenuItem item2 = new MenuItem("Level Selector");
         MenuItem item3 = new MenuItem("Level Editor");
         MenuItem item4 = new MenuItem("Neustarten");
         MenuItem item5 = new MenuItem("Musik Laut"); 
         
         item1.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				MainMenu mm = new MainMenu();
-				mm.setStage(s);
-				mm.setMediaPlayer(mPlayer);
-				Scene scene = new Scene(mm);
-				s.setScene(scene);
-			}
+            @Override
+            public void handle(ActionEvent event) {
+                MainMenu mm = new MainMenu();
+                mm.setStage(s);
+                mm.setMediaPlayer(mPlayer);
+                Scene scene = new Scene(mm);
+                s.setScene(scene);
+                s.show();
+            }
         });
         item2.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				LevelSelection ls = new LevelSelection();
-				ls.setStage(s);
-				ls.setMediaPlayer(mPlayer);
-				Scene scene = new Scene(ls);
-				s.setScene(scene);
-			}
+            @Override
+            public void handle(ActionEvent event) {
+                LevelSelection ls = new LevelSelection();
+                ls.setStage(s);
+                ls.setMediaPlayer(mPlayer);
+                Scene scene = new Scene(ls);
+                s.setScene(scene);
+                s.show();
+            }
         });
         item3.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				Leveleditor le = new Leveleditor();
-				//le.setStage(s);
-				//le.setMediaPlayer(mPlayer);
-				Scene scene = new Scene(le);
-				s.setScene(scene);
-			}
+            @Override
+            public void handle(ActionEvent event) {
+                Leveleditor le = new Leveleditor();
+                //le.setStage(s);
+                //le.setMediaPlayer(mPlayer);
+                Scene scene = new Scene(le);
+                s.setScene(scene);
+                s.show();
+            }
         });
         item4.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				//restart
-			}
+            @Override
+            public void handle(ActionEvent event) {
+                restart();
+            }
         });
         item5.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				mPlayer.setVolume(1);
-			}
+            @Override
+            public void handle(ActionEvent event) {
+                mPlayer.setVolume(1);
+            }
         });
         
         // Add menuItems to the Menus
@@ -176,7 +182,7 @@ public class StageCreator extends GridPane{
         // Add Menus to the MenuBar
         menuBar.getMenus().addAll(sceneMenu, gameMenu);
         add(menuBar, 0, 0);
-    	
+        
         for(int i = 0;i<level.getHoehe();i++) {
             for(int j = 0;j<level.getBreite();j++) {
                 if(level.boden[i][j] == null) {
@@ -221,8 +227,8 @@ public class StageCreator extends GridPane{
 
                 
                 if(level.entities[i][j] == null) {
-                	ImageView imageView = new ImageView();
-                	imageView.setFitHeight(32);
+                    ImageView imageView = new ImageView();
+                    imageView.setFitHeight(32);
                     imageView.setFitWidth(32);
                     game.add(imageView, j*32, i*32);
                     imageView.toFront();
@@ -287,163 +293,189 @@ public class StageCreator extends GridPane{
         int xE = x;
         int yE = y;
         switch (direction) {
-        	default: break;
-        	case "up": yN = y-1; yE = yN-1; break;
-        	case "down": yN = y+1; yE = yN+1; break;
-        	case "right": xN = x+1; xE = xN+1; break;
-        	case "left": xN = x-1; xE = xN-1; break;
+            default: break;
+            case "up": yN = y-1; yE = yN-1; break;
+            case "down": yN = y+1; yE = yN+1; break;
+            case "right": xN = x+1; xE = xN+1; break;
+            case "left": xN = x-1; xE = xN-1; break;
         }
         
         if(xN >= 0 && yN >= 0 && xN < level.getBreite() && yN < level.getHoehe()) {
-        	if(level.boden[yN][xN] == null) { //Mauer
-        		dreh(direction, y, x);
-	       	}else if(level.boden[yN][xN].isWalkable()) { // Untergrund ist begehbar
-	       		if(level.entities[yN][xN] == null) { // Nichts im Weg -> Einfach laufen
-	       			level.entities[yN][xN] = p;
-	       			level.entities[y][x] = null;
-	       			views[yN][xN].setImage(iPlayer);
-            		dreh(direction, yN, xN);
-            		views[yN][xN].setVisible(true);
-                	views[y][x].setVisible(false);
-                	p.setY(yN); p.setX(xN);
-                	checkForAction();
-	       		}else if(level.entities[yN][xN].isMoveable()) {
-	       			if(!(xE >= 0 && yE >= 0 && xE < level.getBreite() && yE < level.getHoehe())) {
-	       				dreh(direction, y, x);
-	       			}else if(level.boden[yE][xE] == null) {
-	       				dreh(direction, y, x);
-	       			}else if(level.boden[yE][xE] instanceof KeyLock) {
-	       				if(level.entities[yN][xN] instanceof Key) {
-	       					level.entities[yE][xE] = level.entities[yN][xN];
-		       				level.entities[yN][xN] = level.entities[y][x];
-		       				level.entities[y][x] = null;
-		       				
-		       				if(views[yN][xN].getImage() == iBombe){ views[yE][xE].setImage(iBombe); }
-		       				if(views[yN][xN].getImage() == iKey){ views[yE][xE].setImage(iKey);	}
-		       				views[yN][xN].setImage(iPlayer);
-		       				dreh(direction, yN, xN);
-		       				
-		       				views[yE][xE].setVisible(true);
-		       				views[yN][xN].setVisible(true);
-		                	views[y][x].setVisible(false);
-		       				
-		                	p.setY(yN); p.setX(xN);
-		                	
-		                	//KEY INTERACTION
-	                			level.entities[yE][xE] = null;
-	                			views[yE][xE].setImage(iKeylockopen);
-	                		
-		       				
-		       				checkForAction();
-	       				}else {
-	       					dreh(direction, y, x);
-	       				}
-	       			}else if(level.boden[yE][xE].isWalkable()) {
-	       				if(level.entities[yE][xE] == null) {
-	       					level.entities[yE][xE] = level.entities[yN][xN];
-		       				level.entities[yN][xN] = level.entities[y][x];
-		       				level.entities[y][x] = null;
-		       				
-		       				if(views[yN][xN].getImage() == iBombe){ views[yE][xE].setImage(iBombe); }
-		       				if(views[yN][xN].getImage() == iKey){ views[yE][xE].setImage(iKey);	}
-		       				views[yN][xN].setImage(iPlayer);
-		       				dreh(direction, yN, xN);
-		       				
-		       				views[yE][xE].setVisible(true);
-		       				views[yN][xN].setVisible(true);
-		                	views[y][x].setVisible(false);
-		       				
-		                	p.setY(yN); p.setX(xN);
-	
-		                	checkForAction();
-	       				}else {
-	       					dreh(direction, y, x);
-	       				}
-	       			}else {
-	       				dreh(direction, y, x);
-	       			}
-	       		}
-	   		}else { //nicht Walkable
-	   			dreh(direction, y, x);
-	   		}
+            if(level.boden[yN][xN] == null) { //Mauer
+                dreh(direction, y, x);
+            }else if(level.boden[yN][xN].isWalkable()) { // Untergrund ist begehbar
+                if(level.entities[yN][xN] == null) { // Nichts im Weg -> Einfach laufen
+                    level.entities[yN][xN] = p;
+                    level.entities[y][x] = null;
+                    views[yN][xN].setImage(iPlayer);
+                    dreh(direction, yN, xN);
+                    views[yN][xN].setVisible(true);
+                    views[y][x].setVisible(false);
+                    p.setY(yN); p.setX(xN);
+                    checkForAction();
+                }else if(level.entities[yN][xN].isMoveable()) {
+                    if(!(xE >= 0 && yE >= 0 && xE < level.getBreite() && yE < level.getHoehe())) {
+                        dreh(direction, y, x);
+                    }else if(level.boden[yE][xE] == null) {
+                        dreh(direction, y, x);
+                    }else if(level.boden[yE][xE] instanceof KeyLock) {
+                        if(level.entities[yN][xN] instanceof Key) {
+                            level.entities[yE][xE] = level.entities[yN][xN];
+                            level.entities[yN][xN] = level.entities[y][x];
+                            level.entities[y][x] = null;
+                            
+                            if(views[yN][xN].getImage() == iBombe){ views[yE][xE].setImage(iBombe); }
+                            if(views[yN][xN].getImage() == iKey){ views[yE][xE].setImage(iKey); }
+                            views[yN][xN].setImage(iPlayer);
+                            dreh(direction, yN, xN);
+                            
+                            views[yE][xE].setVisible(true);
+                            views[yN][xN].setVisible(true);
+                            views[y][x].setVisible(false);
+                            
+                            p.setY(yN); p.setX(xN);
+                            
+                            //KEY INTERACTION
+                                level.entities[yE][xE] = null;
+                                views[yE][xE].setImage(iKeylockopen);
+                                
+                                MediaPlayer mp2 = new MediaPlayer(keyUnlockSound);
+                                mp2.setVolume(0.6);
+                                mp2.play();
+                            
+                            
+                            checkForAction();
+                        }else {
+                            dreh(direction, y, x);
+                        }
+                    }else if(level.boden[yE][xE].isWalkable()) {
+                        if(level.entities[yE][xE] == null) {
+                            level.entities[yE][xE] = level.entities[yN][xN];
+                            level.entities[yN][xN] = level.entities[y][x];
+                            level.entities[y][x] = null;
+                            
+                            if(views[yN][xN].getImage() == iBombe){ views[yE][xE].setImage(iBombe); }
+                            if(views[yN][xN].getImage() == iKey){ views[yE][xE].setImage(iKey); }
+                            views[yN][xN].setImage(iPlayer);
+                            dreh(direction, yN, xN);
+                            
+                            views[yE][xE].setVisible(true);
+                            views[yN][xN].setVisible(true);
+                            views[y][x].setVisible(false);
+                            
+                            p.setY(yN); p.setX(xN);
+    
+                            checkForAction();
+                        }else {
+                            dreh(direction, y, x);
+                        }
+                    }else {
+                        dreh(direction, y, x);
+                    }
+                }
+            }else { //nicht Walkable
+                dreh(direction, y, x);
+            }
         }else { //wuerde rauslaufen
-        	dreh(direction, y, x);
+            dreh(direction, y, x);
         }  
     }
     
     private void dreh(String dir, int y, int x) {
-    	switch (dir) {
-	    	default: break;
-	    	case "up": views[y][x].setRotate(0); break;
-	    	case "down": views[y][x].setRotate(180); break;
-	    	case "right": views[y][x].setRotate(90); break;
-	    	case "left": views[y][x].setRotate(270); break;
-    	}
-    	
+        switch (dir) {
+            default: break;
+            case "up": views[y][x].setRotate(0); break;
+            case "down": views[y][x].setRotate(180); break;
+            case "right": views[y][x].setRotate(90); break;
+            case "left": views[y][x].setRotate(270); break;
+        }
+        
     }
     
     private void checkForAction() {
-    	int x = p.getX();
-    	int y = p.getY();
-    	if(level.boden[y][x] instanceof Ladder) {
-    		boolean finish = true;
-    		for(int i = 0;i<level.getHoehe();i++) {
+        int x = p.getX();
+        int y = p.getY();
+        if(level.boden[y][x] instanceof Ladder) {
+            boolean finish = true;
+            for(int i = 0;i<level.getHoehe();i++) {
                 for(int j = 0;j<level.getBreite();j++) {
-                	if(level.entities[i][j] instanceof Key) {              		
-                		finish = false;
-                	}
+                    if(level.entities[i][j] instanceof Key) {                   
+                        finish = false;
+                    }
                 }
-    		}
-    		if(finish) {
-    			MediaPlayer mp2 = new MediaPlayer(winSound);
-    			mp2.setVolume(0.6);
-    			mp2.play();
-    			LevelSelection ls = new LevelSelection();
-				ls.setStage(s);
-				ls.setMediaPlayer(mPlayer);
-				Scene scene = new Scene(ls);
-				s.setScene(scene);
-    		}
-    	}
-    	if(level.boden[y][x] instanceof Bombenplatz) {
-    		for(int i = 0;i<level.getHoehe();i++) {
+            }
+            if(finish) {
+                MediaPlayer mp2 = new MediaPlayer(winSound);
+                mp2.setVolume(0.6);
+                mp2.play();
+                LevelSelection ls = new LevelSelection();
+                ls.setStage(s);
+                ls.setMediaPlayer(mPlayer);
+                Scene scene = new Scene(ls);
+                s.setScene(scene);
+            }
+        }
+        if(level.boden[y][x] instanceof Bombenplatz) {
+            for(int i = 0;i<level.getHoehe();i++) {
                 for(int j = 0;j<level.getBreite();j++) {
-                	if(level.entities[i][j] instanceof Bombe) {              		
-                		views[i][j].setVisible(false);
-                		level.entities[i][j] = null;
-                		
-                		if(level.entities[i-1][j] instanceof Bruchstein) { views[i-1][j].setVisible(false); level.entities[i-1][j] = null; } //up
-                		if(level.entities[i+1][j] instanceof Bruchstein) { views[i+1][j].setVisible(false); level.entities[i+1][j] = null; } //down
-                		if(level.entities[i][j+1] instanceof Bruchstein) { views[i][j+1].setVisible(false); level.entities[i][j+1] = null; } //right
-                		if(level.entities[i][j-1] instanceof Bruchstein) { views[i][j-1].setVisible(false); level.entities[i][j-1] = null; } //left
-                		
-                		if(level.entities[i-1][j] instanceof Player) { verloren(); } //up
-                		if(level.entities[i+1][j] instanceof Player) { verloren(); } //down
-                		if(level.entities[i][j+1] instanceof Player) { verloren(); } //right
-                		if(level.entities[i][j-1] instanceof Player) { verloren(); } //left
-                	}
+                    if(level.entities[i][j] instanceof Bombe) {                     
+                        
+                        MediaPlayer mp2 = new MediaPlayer(boomSound);
+                        mp2.setVolume(0.6);
+                        mp2.play();
+                        
+                        views[i][j].setVisible(false);
+                        level.entities[i][j] = null;
+                        
+                        if(level.entities[i-1][j] instanceof Bruchstein) { views[i-1][j].setVisible(false); level.entities[i-1][j] = null; } //up
+                        if(level.entities[i+1][j] instanceof Bruchstein) { views[i+1][j].setVisible(false); level.entities[i+1][j] = null; } //down
+                        if(level.entities[i][j+1] instanceof Bruchstein) { views[i][j+1].setVisible(false); level.entities[i][j+1] = null; } //right
+                        if(level.entities[i][j-1] instanceof Bruchstein) { views[i][j-1].setVisible(false); level.entities[i][j-1] = null; } //left
+                        
+                        if(level.entities[i-1][j] instanceof Player) { verloren(); } //up
+                        if(level.entities[i+1][j] instanceof Player) { verloren(); } //down
+                        if(level.entities[i][j+1] instanceof Player) { verloren(); } //right
+                        if(level.entities[i][j-1] instanceof Player) { verloren(); } //left
+                        
+                    }
                 }
-    		}
-    	}
-    	if(level.boden[y][x] instanceof Schlucht) {
-    		verloren();
-    	}
-    	
-    	
+            }
+        }
+        if(level.boden[y][x] instanceof Schlucht) {
+            verloren();
+        }
+        
+        
     }
     
     private void verloren() {
-    	mPlayer.stop();
-    	MediaPlayer mp2 = new MediaPlayer(loseSound);
-		mp2.setVolume(0.6);
-		mp2.play();
-		
-		LevelSelection ls = new LevelSelection();
-		ls.setStage(s);
-		ls.setMediaPlayer(mPlayer);
-		Scene scene = new Scene(ls);
-		s.setScene(scene);
+        mPlayer.stop();
+        MediaPlayer mp2 = new MediaPlayer(loseSound);
+        mp2.setVolume(0.6);
+        mp2.play();
+        
+        restart();
     }
+    
+    private void restart(){
+        int lid = level.getID();
+        StageCreator scr;
+        switch (lid){
+            default: scr = new StageCreator(new L1()); break;
+            case 1: scr = new StageCreator(new L1()); break;
+            case 2: scr = new StageCreator(new L2()); break;
+            case 3: scr = new StageCreator(new L3()); break;
+            case 4: scr = new StageCreator(new L4()); break;
+            case 5: scr = new StageCreator(new L5()); break;
+        }
+        scr.setStage(s);
+        scr.initMediaPlayer(mPlayer);
+        Scene scene = new Scene(scr);
+        scr.initKeyListener(scene);
+        s.setScene(scene);
+        s.show();
+    }
+    
     
     //####### GET & SET ###########################################################################################################
     

@@ -15,11 +15,13 @@ public abstract class Level
     public Entity[][] entities;
     public Boden[][] boden;
     protected Player p;
+    protected int id;
 
-    public Level(int pHoehe, int pBreite){
+    public Level(int pHoehe, int pBreite, int pId){
         breite = pBreite;
         hoehe = pHoehe;
-
+        id = pId;
+        
         entities = new Entity[hoehe][breite];
         boden = new Boden[hoehe][breite];
     }
@@ -30,6 +32,10 @@ public abstract class Level
 
     public int getHoehe() {
         return hoehe;
+    }
+    
+    public int getID() {
+        return id;
     }
     
     public Player getPlayer(){
