@@ -67,7 +67,7 @@ public class MainMenu extends GridPane{
 		tTitel.setX(10.0f);
 		tTitel.setY(270.0f);
 		tTitel.setFill(Color.WHITE);;
-		tTitel.setFont(Font.font(null, FontWeight.BOLD, 32));
+		tTitel.setFont(Font.font(null, FontWeight.BOLD, 50));
 		
 		add(tTitel, 0, 0);
 		add(bStart, 0, 1);
@@ -77,28 +77,28 @@ public class MainMenu extends GridPane{
 	}
 	private void style() { //Hier müssen die Buttons noch angepasst werden
 		bStart.setStyle(""
-				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-background-radius: 40;"
+				+ "-fx-font-size: 30;"
                 + "-fx-font-weight: bold;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
-				+ "-fx-border-radius: 20px;"
+				+ "-fx-border-radius: 40px;"
 				+ "-fx-border: none");
 		
 		bLevelEditor.setStyle(""
-				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-background-radius: 40;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
-				+ "-fx-border-radius: 20px;"
+				+ "-fx-border-radius: 40px;"
 				+ "-fx-border: none");
 		
 		bCredits.setStyle(""
-				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-background-radius: 40;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
-				+ "-fx-border-radius: 20px;"
+				+ "-fx-border-radius: 40px;"
 				+ "-fx-border: none");
 		
 	}

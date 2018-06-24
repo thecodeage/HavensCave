@@ -43,7 +43,6 @@ public class HavensCave extends Application
     	}
     	
 
-
     	mm = new MainMenu();;
     	mm.setMediaPlayer(mediaPlayer);
     	Scene scene = new Scene(mm, 1024, 512);
