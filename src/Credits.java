@@ -1,7 +1,10 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -111,6 +114,18 @@ public class Credits extends GridPane {
 	
 	public void setStage(Stage pS) {
 		s = pS;
+		
+		bZurueck.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				MainMenu mm = new MainMenu();
+		        mm.setStage(s);
+		        mm.setMediaPlayer(mPlayer);
+		        Scene scene2 = new Scene(mm, 1024, 512);
+		        s.setScene(scene2);
+		        s.show();
+			}
+		});
 	}
 	
 	public void setMediaPlayer(MediaPlayer mp) {

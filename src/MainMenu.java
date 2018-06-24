@@ -133,7 +133,7 @@ public class MainMenu extends GridPane{
 				Credits cr = new Credits();
 				cr.setStage(s);
 				cr.setMediaPlayer(mPlayer);
-				Scene scene = new Scene(cr);
+				Scene scene = new Scene(cr, 1024, 512);
 				s.setScene(scene);
 			}
 			
