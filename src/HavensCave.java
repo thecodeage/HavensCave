@@ -1,6 +1,7 @@
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -32,10 +33,15 @@ public class HavensCave extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-    	mainMenuMusic = new Media(new File("src\\res\\audio\\PushysCaveTitel.mp3").toURI().toString());
-    	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
-    	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
-    	mediaPlayer = new MediaPlayer(mainMenuMusic);
+    	try {
+    		mainMenuMusic = new Media(new File("src\\res\\audio\\PushysCaveTitel.mp3").toURI().toString());
+        	bgMusic1 = new Media(new File("src\\res\\audio\\PushysCaveAdventure.mp3").toURI().toString());
+        	bgMusic2 = new Media(new File("src\\res\\audio\\PushysCaveAdventure2.mp3").toURI().toString());
+        	mediaPlayer = new MediaPlayer(mainMenuMusic);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	
 
 
     	mm = new MainMenu();;
