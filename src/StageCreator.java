@@ -418,7 +418,7 @@ public class StageCreator extends GridPane{
                 LevelSelection ls = new LevelSelection();
                 ls.setStage(s);
                 ls.setMediaPlayer(mPlayer);
-                Scene scene = new Scene(ls);
+                Scene scene = new Scene(ls, 1024, 512);
                 s.setScene(scene);
             }
         }

@@ -35,7 +35,7 @@ public class LevelSelection extends GridPane {
 	Button bLevel1 = new Button("Level 1");
 	Button bLevel2 = new Button("Level 2");
 	Button bLevel3 = new Button("Level 3");
-	Button bCustom = new Button("Custom");
+	Button bBack = new Button("Zurueck");
 	Button bLevel4 = new Button("Level 4");
 	Button bLevel5 = new Button("Level 5");
 	Button bLevel6 = new Button("Level 6");
@@ -101,7 +101,7 @@ public class LevelSelection extends GridPane {
 		pHilfspane.add(bLevel1, 0, 0);
 		pHilfspane.add(bLevel2, 0, 1);
 		pHilfspane.add(bLevel3, 0, 2);
-		pHilfspane.add(bCustom, 0, 5);
+		pHilfspane.add(bBack, 0, 5);
 		pHilfspane.add(bLevel4, 0, 3);
 		pHilfspane.add(bLevel5, 0, 4);
 		pHilfspane.add(bLevel6, 1, 0);
@@ -144,7 +144,7 @@ public class LevelSelection extends GridPane {
 				+ "-fx-border-radius: 20px;"
 				+ "-fx-border: none");
 		
-		bCustom.setStyle(""
+		bBack.setStyle(""
 				+ "-fx-background-radius: 20;"
 				+ "-fx-font-size: 15;"
 				+ "-fx-border-style: solid;"
@@ -262,6 +262,17 @@ public class LevelSelection extends GridPane {
 	}
 	
 	public void initButtons() {
+		bBack.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				MainMenu mm = new MainMenu();
+                mm.setStage(s);
+                mm.setMediaPlayer(mPlayer);
+                Scene scene2 = new Scene(mm, 1024, 512);
+                s.setScene(scene2);
+                s.show();
+			}
+		});
 		bLevel1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
