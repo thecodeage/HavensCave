@@ -89,7 +89,7 @@ public class LevelSelection extends GridPane {
 		tTitel.setX(10.0f);
 		tTitel.setY(270.0f);
 		tTitel.setFill(Color.WHITE);;
-		tTitel.setFont(Font.font(null, FontWeight.BOLD, 32));
+		tTitel.setFont(Font.font(null, FontWeight.BOLD, 50));
 		
 		add(pHilfspane, 0, 1);
 		pHilfspane.setVgap(5.0);
@@ -122,7 +122,7 @@ public class LevelSelection extends GridPane {
 	public void style() {
 		bLevel1.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
 		        + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -130,7 +130,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel2.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
 		        + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -138,7 +138,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel3.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
 		        + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -146,7 +146,7 @@ public class LevelSelection extends GridPane {
 		
 		bBack.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
 		        + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -154,7 +154,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel4.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -162,7 +162,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel5.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -170,7 +170,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel6.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -178,7 +178,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel7.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -186,7 +186,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel8.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -194,7 +194,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel9.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -202,7 +202,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel10.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -210,7 +210,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel11.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -218,7 +218,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel12.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -226,7 +226,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel13.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -234,7 +234,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel14.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
@@ -242,7 +242,7 @@ public class LevelSelection extends GridPane {
 		
 		bLevel15.setStyle(""
 				+ "-fx-background-radius: 20;"
-				+ "-fx-font-size: 15;"
+				+ "-fx-font-size: 30;"
 				+ "-fx-border-style: solid;"
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
