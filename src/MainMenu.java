@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -16,6 +17,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -36,8 +38,10 @@ public class MainMenu extends GridPane{
 	Stage s;
 	MediaPlayer mPlayer;
 	
+	
 	public MainMenu() {
 		initButtons();
+		
 		
 		try {
 			hintergrundbild = new Image(new FileInputStream("src\\res\\img\\mainmenu.png"));
