@@ -78,7 +78,7 @@ public class StageCreator extends GridPane{
         
         mPlayer = mp;
         mPlayer.stop();
-        int i = (int) Math.random()*2;
+        int i = (int) (Math.random()*2);
         if(i == 1) {
             mPlayer = new MediaPlayer(bgMusic1);
         }else {
@@ -127,7 +127,8 @@ public class StageCreator extends GridPane{
         MenuItem item2 = new MenuItem("Level Selector");
         MenuItem item3 = new MenuItem("Level Editor");
         MenuItem item4 = new MenuItem("Neustarten");
-        MenuItem item5 = new MenuItem("Musik Laut"); 
+        MenuItem item5 = new MenuItem("Musik Up"); 
+        MenuItem item6 = new MenuItem("Musik Down"); 
         
         item1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -135,8 +136,8 @@ public class StageCreator extends GridPane{
                 MainMenu mm = new MainMenu();
                 mm.setStage(s);
                 mm.setMediaPlayer(mPlayer);
-                Scene scene = new Scene(mm);
-                s.setScene(scene);
+                Scene scene2 = new Scene(mm);
+                s.setScene(scene2);
                 s.show();
             }
         });
@@ -146,8 +147,8 @@ public class StageCreator extends GridPane{
                 LevelSelection ls = new LevelSelection();
                 ls.setStage(s);
                 ls.setMediaPlayer(mPlayer);
-                Scene scene = new Scene(ls);
-                s.setScene(scene);
+                Scene scene2 = new Scene(ls);
+                s.setScene(scene2);
                 s.show();
             }
         });
@@ -174,10 +175,16 @@ public class StageCreator extends GridPane{
                 mPlayer.setVolume(1);
             }
         });
+        item6.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                mPlayer.setVolume(0.2);
+            }
+        });
         
         // Add menuItems to the Menus
         sceneMenu.getItems().addAll(item1, item2, item3);
-        gameMenu.getItems().addAll(item4, item5);
+        gameMenu.getItems().addAll(item4, item5, item6);
         
         // Add Menus to the MenuBar
         menuBar.getMenus().addAll(sceneMenu, gameMenu);

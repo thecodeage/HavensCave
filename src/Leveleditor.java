@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -15,6 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 public class Leveleditor extends GridPane {
 
@@ -25,11 +28,15 @@ public class Leveleditor extends GridPane {
     private ChoiceBox<String> akt2;
     private ImageView showAkt2;
     private Button bEbene;
+    private Button toMainMenu;
     
     private ImageView[][] vBoden;
     private ImageView[][] vEntities;
     private GridPane pane0 = new GridPane();
 	private GridPane pane1 = new GridPane();
+	
+	Stage s;
+	MediaPlayer mPlayer;
     
     Image iBombe, iBombenPlatz, iBruchstein, iEmpty, iKey, iKeylock, iLadder, iPlayer, iSand, iSchlucht, iWand, iWandwall;
 	
@@ -178,6 +185,21 @@ public class Leveleditor extends GridPane {
 				
 			});
 			editor.add(bSave, 3, 0);
+			
+			toMainMenu = new Button("Zurueck zum MainMenue");
+			toMainMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					MainMenu mm = new MainMenu();
+	                mm.setStage(s);
+	                mm.setMediaPlayer(mPlayer);
+	                Scene scene2 = new Scene(mm);
+	                s.setScene(scene2);
+	                s.show();
+				}
+			});
+			editor.add(toMainMenu, 6, 0);
+
 
 			
 		add(editor, 0, 1);
@@ -185,6 +207,15 @@ public class Leveleditor extends GridPane {
 		
 		
 	}
+
+	public void setStage(Stage pS) {
+		s = pS;
+	}
+	
+	public void setMediaPlayer(MediaPlayer mp) {
+		mPlayer = mp;
+	}
+	
 	
 	public void getCode() {
 		String s = "";

@@ -134,6 +134,8 @@ public class MainMenu extends GridPane{
 			@Override
 			public void handle(ActionEvent event) {
 				Leveleditor le = new Leveleditor();
+				le.setStage(s);
+				le.setMediaPlayer(mPlayer);
 				Scene scene = new Scene(le);
 				s.setScene(scene);
 			}

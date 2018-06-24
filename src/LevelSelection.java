@@ -27,6 +27,7 @@ import level.L2;
 import level.L3;
 import level.L4;
 import level.L5;
+import level.Level;
 
 public class LevelSelection extends GridPane {
 	
@@ -264,59 +265,51 @@ public class LevelSelection extends GridPane {
 		bLevel1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				startsound();
-				StageCreator sc = new StageCreator(new L1());
-				sc.initMediaPlayer(mPlayer);
-				sc.setStage(s);
-				Scene scene = new Scene(sc);
-				sc.initKeyListener(scene);
-				s.setScene(scene);
+				startLevel(1);
 			}
 		});
 		bLevel2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				startsound();
-				StageCreator sc = new StageCreator(new L2());
-				sc.initMediaPlayer(mPlayer);
-				Scene scene = new Scene(sc);
-				sc.initKeyListener(scene);
-				s.setScene(scene);
+				startLevel(2);
 			}
 		});
 		bLevel3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				startsound();
-				StageCreator sc = new StageCreator(new L3());
-				sc.initMediaPlayer(mPlayer);
-				Scene scene = new Scene(sc);
-				sc.initKeyListener(scene);
-				s.setScene(scene);
+				startLevel(3);
 			}
 		});
 		bLevel4.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				startsound();
-				StageCreator sc = new StageCreator(new L4());
-				sc.initMediaPlayer(mPlayer);
-				Scene scene = new Scene(sc);
-				sc.initKeyListener(scene);
-				s.setScene(scene);
+				startLevel(4);
 			}
 		});
 		bLevel5.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				startsound();
-				StageCreator sc = new StageCreator(new L5());
-				sc.initMediaPlayer(mPlayer);
-				Scene scene = new Scene(sc);
-				sc.initKeyListener(scene);
-				s.setScene(scene);
+				startLevel(5);
 			}
 		});
+	}
+
+	public void startLevel(int lid) {
+		StageCreator sc;
+		switch (lid){
+	        default: sc = new StageCreator(new L1()); break;
+	        case 1: sc = new StageCreator(new L1()); break;
+	        case 2: sc = new StageCreator(new L2()); break;
+	        case 3: sc = new StageCreator(new L3()); break;
+	        case 4: sc = new StageCreator(new L4()); break;
+	        case 5: sc = new StageCreator(new L5()); break;
+		}
+		startsound();	
+		sc.initMediaPlayer(mPlayer);
+		sc.setStage(s);
+		Scene scene = new Scene(sc);
+		sc.initKeyListener(scene);
+		s.setScene(scene);
 	}
 	
 	public void startsound() {
