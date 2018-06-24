@@ -130,7 +130,11 @@ public class MainMenu extends GridPane{
 		bCredits.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
+				Credits cr = new Credits();
+				cr.setStage(s);
+				cr.setMediaPlayer(mPlayer);
+				Scene scene = new Scene(cr);
+				s.setScene(scene);
 			}
 			
 		});

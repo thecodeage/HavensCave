@@ -11,10 +11,12 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Credits extends GridPane {
 
@@ -26,6 +28,8 @@ public class Credits extends GridPane {
 	Button bZurueck = new Button("Zurueck");
 	DropShadow ds = new DropShadow();
 	Image hintergrundbild;
+	Stage s;
+	MediaPlayer mPlayer;
 	
 	public Credits() {
 		
@@ -103,5 +107,13 @@ public class Credits extends GridPane {
                 + "-fx-border-color: black;"
 				+ "-fx-border-radius: 20px;"
 				+ "-fx-border: none");
+	}
+	
+	public void setStage(Stage pS) {
+		s = pS;
+	}
+	
+	public void setMediaPlayer(MediaPlayer mp) {
+		mPlayer = mp;
 	}
 }
