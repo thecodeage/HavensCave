@@ -193,7 +193,7 @@ public class Leveleditor extends GridPane {
 					MainMenu mm = new MainMenu();
 	                mm.setStage(s);
 	                mm.setMediaPlayer(mPlayer);
-	                Scene scene2 = new Scene(mm);
+	                Scene scene2 = new Scene(mm, 1024, 512);
 	                s.setScene(scene2);
 	                s.show();
 				}

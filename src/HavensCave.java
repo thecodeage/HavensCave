@@ -46,7 +46,7 @@ public class HavensCave extends Application
 
     	mm = new MainMenu();;
     	mm.setMediaPlayer(mediaPlayer);
-    	Scene scene = new Scene(mm);
+    	Scene scene = new Scene(mm, 1024, 512);
 
         stage.setTitle("Haven's Cave Adventure");
         stage.getIcons().add(new Image("file:src\\res\\img\\player.png")); //stage.getIcons().add(new Image(HavensCave.class.getResourceAsStream("src\\res\\img\\player.png")));
